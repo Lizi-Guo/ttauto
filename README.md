@@ -258,7 +258,7 @@ train-track automaton; `ttauto catalog` and `ttauto campaign` generate and
 run one configuration per stratum. [docs/USAGE.md](docs/USAGE.md) is the
 full reference.
 
-## Configurations and computation time
+## Configurations
 
 The configurations below follow our recorded proof routes. `R(id)` denotes
 `current_query_configuration` in the [result register](docs/HISTORICAL_RESULTS.json),
@@ -277,65 +277,6 @@ which contains the exact parameters and pruning settings for all 64 entries.
 
 These are configuration mappings; the complete proofs also use the coverage
 arguments and attaining certificates recorded in [docs/RESULTS.md](docs/RESULTS.md).
-
-Recorded times, rounded, for the indicated stages:
-
-| Computation | Time | CPU workers |
-| --- | --- | --- |
-| D3 lower-bound and folding checks | about 1 second each | 1 |
-| D3-D5, seven-stratum acceptance run | 53 seconds | 1 |
-| D6, core certification + 25 residual groups | 95 seconds + 72 worker-minutes | up to 4 |
-| D7, endpoint checks for three residual strata | 5-110 seconds; full campaign unrecorded | 1 |
-| Genus two, six quotient-disc searches | 1 hour elapsed | up to 3 |
-| D10, enumeration and spectral filtering | 26 minutes | 380 |
-| D12 coefficient enumeration | 10 minutes | 64* |
-| D14 coefficient enumeration | 14 minutes | 60* |
-| D18 coefficient enumeration | 3 hours | 64* |
-| D22 coefficient enumeration | 10 hours | 96* |
-| D26 coefficient enumeration | 5 days | 96* |
-
-The **peak recorded D10 allocation was 380 logical CPUs across five nodes**.
-Worker counts describe parallelism, not measured CPU utilization; `*` denotes
-the initial enumeration wave. D6 worker-minutes sum parallel jobs. Large-disc
-times include scheduling and resumptions, but exclude later proof audits.
-
-Genus three, covering all 27 strata and the global reduction:
-
-| Stratum / computation | Recorded stage | Time | CPU workers |
-| --- | --- | --- | --- |
-| Common lower bound, 21 strata | CI arithmetic run | 4-6 seconds | 1 |
-| H(1,1,1,1) | Search and attainment check | 5 seconds | 1 |
-| Q(5,1,1,1) | Full minimum computation | — | — |
-| H(2,1,1) | Complete native search | 16 minutes | 1 |
-| Q(6,1,1) | Full minimum computation | — | — |
-| H(4) | Regular period-two sector | 33 minutes | 1 |
-| H(3,1) | Complete native search, local storage | 25-66 seconds | 1 |
-| Q(3,3,2) | Earlier search below 1.5 | 30 minutes | 1 |
-| Q(5,3) | Input export and complete native search | 8 minutes | 1 |
-| H(2,2) | Fixed-singularity sector | 42 minutes | 1 |
-| Q(4,3,1) | Earlier search below 1.5 | 22 minutes | 1 |
-| Q(4,2,1,1) | Joint-homology lower-bound check | 3 seconds | 1 |
-| Q(3,2,2,1) | Full minimum computation | — | — |
-| Q(4,4) | Full minimum computation | — | — |
-| Q(4,2,2) | Full minimum computation | — | — |
-| Q(6,2) | Input export and earlier search below 1.6 | 4 minutes | 1 |
-| Q(5,2,1) | Earlier search below 1.6 | 1 hour | 1 |
-| Q(2,2,2,2) | Full minimum computation | — | — |
-| Q(7,1) | Earlier search below 1.724 | 7 minutes | 1 |
-| Q(8) | Regular-fixed-point sector below 2 | 2 minutes | 1 |
-| Q(4,1,1,1,1) | Graph geometry audit; minimum open | 29 hours | 2 |
-| Q(3,3,1,1) | Bounds; minimum open | — | — |
-| Q(3,2,1,1,1) | Bounds; minimum open | — | — |
-| Q(3,1,1,1,1,1) | Graph geometry audit; minimum open | 26 hours | 2 |
-| Q(2,2,2,1,1) | Bounds; minimum open | — | — |
-| Q(2,2,1,1,1,1) | Bounds; minimum open | — | — |
-| Q(2,1,1,1,1,1,1) | Bounds; minimum open | — | — |
-| Q(1,1,1,1,1,1,1,1) | Principal-stratum reduction; minimum open | — | — |
-| Global genus-three reduction to two values | Full computation | — | — |
-
-`—` means no comparable saved timing or CPU peak was recovered. Stage timings
-are not full proof runtimes. All figures come from
-[saved records](docs/RECORDED_COMPUTATION_COSTS.json); no searches were rerun.
 
 ## Repository layout
 
