@@ -6,9 +6,6 @@ signed geometric witnesses and
 transactional restart. All algorithm implementations are included as ordinary
 source files in this repository, including the C++ train-track core, numerical
 utilities and CSparse. Geometry uses this project's Python certificate routines.
-There is no Hall code, classifier executable or external geometry backend.
-There are no Git submodules and no
-configure-time or runtime downloads from another repository.
 
 The C++ core is adapted from
 [Jean-Luc Thiffeault and Erwan Lanneau's ttauto](https://github.com/jeanluct/ttauto),
