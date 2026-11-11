@@ -2,6 +2,9 @@
 
 **Exact computation of minimal stretch factors of pseudo-Anosov maps.**
 
+This version of ttauto is developed jointly by **Lizi Guo, Jean-Luc Thiffeault,
+and Erwan Lanneau**.
+
 A pseudo-Anosov homeomorphism $f$ of a surface $S$ stretches its invariant
 foliations by a factor $\lambda(f)>1$, its *stretch factor* (or dilatation).
 On a fixed surface the set of stretch factors is discrete, so there is a least
@@ -15,10 +18,8 @@ but large computation. This repository contains the programs that carry it
 out with exact arithmetic, and the results obtained with them for punctured
 discs and for closed surfaces of genus two and three.
 
-It builds on the train-track automata of
-[Thiffeault and Lanneau's ttauto](https://github.com/jeanluct/ttauto), whose
-C++ core is included here, and adds an automaton-free method for lower bounds
-together with certificates for the maps that attain them.
+It combines C++ train-track automata with an automaton-free method for lower
+bounds and certificates for the maps that attain them.
 
 ## Results
 
@@ -289,7 +290,7 @@ What has been run with the present version, and the counts obtained, is in
 
 | Path | Contents |
 | --- | --- |
-| `include/`, `lib/` | train tracks, folds and folding automata (C++, from ttauto) |
+| `include/`, `lib/` | train tracks, folds and folding automata (C++) |
 | `examples/`, `tests/`, `testsuite/` | programs and tests of the C++ core |
 | `python/ttauto_pipeline/` | the engine, its command line, and the two back ends |
 | `python/ttauto_cert/` | exact arithmetic and the necessary conditions |
@@ -322,20 +323,14 @@ What has been run with the present version, and the counts obtained, is in
 
 ```bibtex
 @misc{ttauto-pipeline,
-  author       = {Guo, Lizi},
+  author       = {Guo, Lizi and Thiffeault, Jean-Luc and Lanneau, Erwan},
   title        = {ttauto: exact computation of minimal stretch factors of pseudo-Anosov maps},
   year         = {2026},
   howpublished = {\url{https://github.com/Lizi-Guo/ttauto}}
 }
 ```
 
-Please also cite the original ttauto of Thiffeault and Lanneau, on which the
-train-track core is based.
-
 ## License
 
-GPL-3.0-or-later. The C++ core is adapted from
-[ttauto](https://github.com/jeanluct/ttauto) by Jean-Luc Thiffeault and Erwan
-Lanneau, revision `ca1b2ed`, whose authorship and notices are preserved;
-`LOCAL_PROVENANCE.json` and `dependencies.lock.json` record the revisions and
-the local changes. `extern/jlt` and CSparse keep their own licenses.
+GPL-3.0-or-later. The bundled jlt and CSparse components retain their respective
+licenses and copyright notices.
