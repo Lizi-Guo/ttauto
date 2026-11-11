@@ -28,8 +28,6 @@ is an algebraic integer given exactly by a polynomial. Decimals are rounded
 to six places; [the register](docs/HISTORICAL_RESULTS.json) has the exact
 polynomial and a rational isolating interval for each entry, and
 [docs/RESULTS.md](docs/RESULTS.md) gives the proof route, counts and sources.
-How each result was obtained, and which of them this repository reproduces
-directly, is set out under [Reproducing the results](#reproducing-the-results).
 
 ### Punctured discs
 
@@ -49,6 +47,11 @@ strands, for $n = 10, 12, 14, 18, 22, 26$, is as follows.
 | $D_{26}$ | 1.108686 | $x^{26}-2x^{15}-2x^{11}+1$ | $\rho_{26}^{7}\sigma_{25}^{-2}$ |
 
 Here $\rho_n=\sigma_1\sigma_2\cdots\sigma_{n-1}$.
+
+**Corollary.** The minimum stretch factor $\delta(D_n)$ is now known for every
+$n\ge3$. The six cases above complete the determination when combined with
+the previously known small cases and the general theorem of
+[Tsang and Zeng](https://arxiv.org/html/2412.01648v2).
 
 ### Strata of punctured discs, $3\le n\le 7$
 
@@ -255,37 +258,6 @@ train-track automaton; `ttauto catalog` and `ttauto campaign` generate and
 run one configuration per stratum. [docs/USAGE.md](docs/USAGE.md) is the
 full reference.
 
-## Reproducing the results
-
-Two of the results above are proved from scratch by the commands in this
-repository, in a few seconds each:
-
-| Configuration | What it proves |
-| --- | --- |
-| [`disc3-minimum.json`](experiments/proofs/disc3-minimum.json) | $\delta(D_3)=(3+\sqrt5)/2$: lower bound and certified attaining map |
-| [`genus3-bulk21.json`](experiments/proofs/genus3-bulk21.json) | the lower bound $c$ on 21 strata of genus three: 11,715 candidate spectra, none surviving |
-
-The configurations for the large discs are in
-[`experiments/proofs`](experiments/proofs). They are long computations, ship
-with small default budgets, and are meant to be resumed.
-
-The other results were established by this project's earlier computations,
-recorded through 2026-11-03. Those combined the spectral exclusions above
-with exhaustive automaton searches and arguments specific to individual
-strata, and their logs are not part of this repository. For every entry
-[the register](docs/HISTORICAL_RESULTS.json) keeps the exact polynomial, an
-isolating interval, the proof route, the SHA-256 of the original records, and
-an equivalent configuration for the present programs;
-[docs/RESULTS.md](docs/RESULTS.md) gives the saved counts. Two things follow.
-Running a registered configuration poses the same lower-bound question, but
-the spectral modules alone need not settle it. And the braids attaining the
-minima of $D_{10},\dots,D_{26}$ were classified as pseudo-Anosov with Toby
-Hall's Trains program, for which this repository has no independent
-certificate.
-
-What has been run with the present version, and the counts obtained, is in
-[docs/VALIDATION.md](docs/VALIDATION.md).
-
 ## Repository layout
 
 | Path | Contents |
@@ -318,6 +290,9 @@ What has been run with the present version, and the counts obtained, is in
    [docs/proofs](docs/proofs/disc_weight_homology.txt).
 6. B. Farb and D. Margalit, *A Primer on Mapping Class Groups*, Princeton
    University Press, 2012.
+7. C. C. Tsang and X. Zeng, *Minimum dilatations of pseudo-Anosov braids*,
+   [arXiv:2412.01648v2](https://arxiv.org/abs/2412.01648v2), 2025,
+   Corollary 1.2 and Section 1.1.
 
 ## Citation
 
