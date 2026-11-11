@@ -36,23 +36,26 @@ Notes:
 
 - Example and test sources are auto-discovered from `examples/*.cpp` and
   `tests/*.cpp`.
-- Built binaries are written in-place to `examples/` and `tests/`; the library
-  is written to `lib/`.
+- Everything is written under the build directory: binaries to
+  `build/examples/`, `build/tests/`, `build/testsuite/` and `build/bin/`; the
+  library to `build/lib/`.  Nothing is written in place.
 
 ## Test Commands (Main Repo)
 
 - Recommended fast validation set:
-  - `./tests/test_permplus1`
-  - `./tests/test_traintrack`
-  - `./tests/test_folding_path`
-  - `./tests/test_badwords`
-  - `./examples/ttauto_min_example`
-  - `./examples/ttauto_torus`
+  - `./build/tests/test_permplus1`
+  - `./build/tests/test_traintrack`
+  - `./build/tests/test_folding_path`
+  - `./build/tests/test_badwords`
+  - `./build/examples/ttauto_min_example`
+  - `./build/examples/ttauto_torus`
+- Full registered suite (testsuite programs and the Python pipeline tests):
+  - `ctest --test-dir build --output-on-failure`
 - Interactive example with defaults:
-  - `./examples/ttauto <<'EOF'`
+  - `./build/examples/ttauto <<'EOF'`
   - `EOF`
 - Long-running programs (use intentionally):
-  - `./examples/ttauto_count` (~2 minutes)
+  - `./build/examples/ttauto_count` (~2 minutes)
 
 See `doc/TESTING.md` for the project-maintained recommended matrix and timing notes.
 
@@ -68,7 +71,8 @@ See `doc/TESTING.md` for the project-maintained recommended matrix and timing no
 
 ## Build/Toolchain Facts
 
-- Default compiler flags include `-Wall -O3 -ffast-math`.
+- Default compiler flags are `-Wall -fno-fast-math`, plus `-O3` in Release.
+  Do not re-enable fast-math: the search compares floating-point dilatations.
 - Current default language level in `CMakeLists.txt` is C++17.
 - Keep changes portable with existing compatibility macros:
   - `TRAINTRACKS_NO_SHARED_PTR`

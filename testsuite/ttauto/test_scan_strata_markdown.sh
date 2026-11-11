@@ -31,7 +31,8 @@ REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 SCAN_SCRIPT="${REPO_DIR}/examples/ttauto_scan_strata.sh"
 BASELINE_MD="${REPO_DIR}/examples/ttauto_scan_strata.md"
-TTAUTO_BIN="${REPO_DIR}/examples/ttauto"
+# The build writes binaries under the build directory; CTest passes the path.
+TTAUTO_BIN="${TTAUTO_BIN:-${REPO_DIR}/build/examples/ttauto}"
 
 if [[ ! -x "${TTAUTO_BIN}" ]]; then
   echo "Missing executable: ${TTAUTO_BIN}" >&2

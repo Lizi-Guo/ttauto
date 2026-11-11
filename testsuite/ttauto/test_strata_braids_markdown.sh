@@ -33,7 +33,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 BASELINE_MD="${REPO_DIR}/examples/ttauto_strata_braids.md"
-SWEEP_BIN="${REPO_DIR}/examples/ttbraid_strata"
+# The build writes binaries under the build directory; CTest passes the path.
+SWEEP_BIN="${SWEEP_BIN:-${REPO_DIR}/build/examples/ttbraid_strata}"
 
 if [[ ! -x "${SWEEP_BIN}" ]]; then
   echo "Missing executable: ${SWEEP_BIN}" >&2

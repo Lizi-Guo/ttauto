@@ -175,12 +175,16 @@ endforeach()
 if(TTAUTO_ENABLE_SLOW_TESTS)
   add_test(NAME testsuite_test_scan_strata_markdown
     COMMAND bash "${CMAKE_SOURCE_DIR}/testsuite/ttauto/test_scan_strata_markdown.sh")
+  # The scripts are told where the binaries of THIS build are; they are no
+  # longer written into the source tree.
   set_tests_properties(testsuite_test_scan_strata_markdown PROPERTIES
+    ENVIRONMENT "TTAUTO_BIN=$<TARGET_FILE:example_ttauto>"
     LABELS "deterministic;integration;slow")
 
   add_test(NAME testsuite_test_strata_braids_markdown
     COMMAND bash "${CMAKE_SOURCE_DIR}/testsuite/ttauto/test_strata_braids_markdown.sh")
   set_tests_properties(testsuite_test_strata_braids_markdown PROPERTIES
+    ENVIRONMENT "SWEEP_BIN=$<TARGET_FILE:example_ttbraid_strata>"
     LABELS "deterministic;integration")
 endif()
 

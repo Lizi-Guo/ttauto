@@ -24,7 +24,16 @@ Companion documents already in the repo; read them rather than rediscovering:
 - `devel/macro-status.md`: every non-guard feature macro and how to build
   with it.
 - `extern/jlt/AGENTS.md`: overrides `AGENTS.md` for the bundled `jlt`
-  submodule (header-only numerics; Catch2 tests under `extern/jlt/tests`).
+  sources (header-only numerics; Catch2 tests under `extern/jlt/tests`).
+  `jlt` is vendored as ordinary files, not a submodule; its revision and
+  local changes are recorded in `dependencies.lock.json`.
+
+The repository also carries a Python proof pipeline on top of the C++
+core (`python/ttauto_pipeline`, `python/ttauto_cert`, `native/`).  Its
+documents are the root `README.md`, `docs/PIPELINE.md` (folding-path
+backend), `docs/PROOF_PIPELINE.md` (spectral proof backend) and
+`docs/SOURCES.md` (which file implements what).  Its tests are
+`python/tests/test_*.py`, run by CTest as `pipeline_python`.
 
 ## Build and test
 
@@ -36,11 +45,14 @@ cmake --build build -j
 ctest --test-dir build --output-on-failure
 ```
 
-Outputs are written in place, not into `build/`: library to `lib/`, example
-binaries to `examples/`, test binaries to `tests/`.  Only `testsuite/**/*.cpp`
-programs are registered with CTest, and those land in `build/testsuite/`.
-Sources in `examples/`, `tests/`, and `testsuite/` are globbed, so a new
-`.cpp` needs no CMake edit.
+Everything is written under the build directory, nothing in place:
+library to `build/lib/`, example binaries to `build/examples/`, test
+binaries to `build/tests/`, testsuite programs to `build/testsuite/`, and
+the two pipeline helpers (`ttauto_pipeline_export`, `ttauto_trace_prefix`)
+to `build/bin/`.  CTest runs the `testsuite/**/*.cpp` programs and the
+Python suite (`pipeline_python`); the `tests/*.cpp` programs are built but
+not registered.  Sources in `examples/`, `tests/`, and `testsuite/` are
+globbed, so a new `.cpp` needs no CMake edit.
 
 Target names are prefixed by folder:
 
@@ -52,22 +64,26 @@ ctest --test-dir build -R test_ttauto_search              # one CTest program
 ```
 
 Tests are plain `main()` programs with no framework: they print and exit
-nonzero on failure.  Fast manual matrix after touching `include/` or `lib/`:
-`tests/test_traintrack`, `tests/test_folding_path`, `tests/test_permplus1`,
-`tests/test_badwords`, `examples/ttauto_min_example`, `examples/ttauto_torus`.
-`examples/ttauto_count` builds every automaton up to n=9 in about 2 s.
-`examples/ttauto_labels` took about 100 minutes until it capped its path
+nonzero on failure.  Fast manual matrix after touching `include/` or `lib/`
+(binaries are under `build/`):
+`build/tests/test_traintrack`, `build/tests/test_folding_path`,
+`build/tests/test_permplus1`, `build/tests/test_badwords`,
+`build/examples/ttauto_min_example`, `build/examples/ttauto_torus`.
+`build/examples/ttauto_count` builds every automaton up to n=9 in about 2 s.
+`build/examples/ttauto_labels` took about 100 minutes until it capped its path
 length: `check_norms()` derives that bound from the dilatation window, and
 searching to it is what makes the result complete for the window, so the
 cost was real rather than waste.  See `devel/iss016/labelled_automaton.md`.
 
-`examples/ttauto` is interactive; feed it a defaults-only stdin
-(`examples/ttauto <<EOF` / `EOF`) or an answer file such as
+`build/examples/ttauto` is interactive; feed it a defaults-only stdin
+(`build/examples/ttauto <<EOF` / `EOF`) or an answer file such as
 `devel/iss002/ttauto.input`.  It and the search testsuite write Mathematica
 files (`ttauto_n=*.m`, `pA_n=*.m`) into the current directory; delete those
 before committing.
 
-Compile flags are `-Wall -O3 -ffast-math`.  To build a non-default macro
+Compile flags are `-Wall -fno-fast-math`, with `-O3` in Release (the
+default build type).  Fast-math is off on purpose: the search compares
+floating-point dilatations.  To build a non-default macro
 variant, configure a separate build directory with
 `-DCMAKE_CXX_FLAGS='-D<MACRO>'` (see `devel/macro-status.md`).
 

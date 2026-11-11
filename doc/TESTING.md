@@ -11,11 +11,17 @@ cmake --build build -j
 
 This compiles:
 
-- all `examples/*.cpp` into `examples/`
-- all `tests/*.cpp` into `tests/`
+- all `examples/*.cpp` into `build/examples/`
+- all `tests/*.cpp` into `build/tests/`
 - all `testsuite/**/*.cpp` into `build/testsuite/`
+- the library into `build/lib/`, and the two pipeline helpers
+  (`ttauto_pipeline_export`, `ttauto_trace_prefix`) into `build/bin/`
 
-`ctest` runs deterministic fast tests by default.
+Nothing is written into the source tree.  Paths such as `examples/ttauto`
+below name the program; the binary is `build/examples/ttauto`.
+
+`ctest` runs deterministic fast tests by default: the testsuite programs
+and the Python pipeline tests (`pipeline_python`, `python/tests/test_*.py`).
 
 Testsuite programs are compiled with `-UNDEBUG` (see `ttauto_add_testsuite`
 in `CMakeLists.txt`), so their `assert()` calls stay live in the default
@@ -79,13 +85,10 @@ seconds and is regenerated in the testsuite.
 
 ## Measuring line coverage
 
-Use a separate Debug build with gcov instrumentation; never the in-place
-`build/` directory.  A separate build directory is not enough on its own,
-though: the library and the example binaries are written to `lib/` and
-`examples/` whatever the build directory, so the coverage build leaves an
-instrumented `lib/libttauto.a` behind, and anything linked from `build/`
-afterwards fails with `undefined reference to __gcov_init`.  Delete
-`lib/libttauto.a` and rebuild when you are done measuring.
+Use a separate Debug build with gcov instrumentation; never the Release
+`build/` directory.  Every output lands under its own build directory, so
+the coverage build does not overwrite the Release library or binaries and
+`build/` needs no repair afterwards.
 
 ```bash
 cmake -S . -B build-cov -DCMAKE_BUILD_TYPE=Debug \
@@ -98,16 +101,14 @@ gcov --json-format -o build-cov/CMakeFiles/ttauto.dir/lib/traintracks \
       build-cov/CMakeFiles/ttauto.dir/lib/traintracks/*.gcda
 ```
 
-Build only the `testsuite_*` targets: the examples and `tests/` programs
-are placed in-place in `examples/` and `tests/` and would be overwritten
-with instrumented binaries.  The library archive `lib/libttauto.a` is also
-in-place and *is* overwritten, so after a coverage run do
+Building only the `testsuite_*` targets is enough for the measurement and
+keeps the coverage build short.  Remove it afterwards with
 
 ```bash
-rm -rf build-cov lib/libttauto.a && cmake --build build -j
+rm -rf build-cov
 ```
 
-to restore the Release archive.  Header-only code (`include/ttauto/**`)
+Header-only code (`include/ttauto/**`)
 is covered through the testsuite objects
 (`build-cov/CMakeFiles/testsuite_*.dir/`); merge the per-object JSON by
 line to get a per-file figure.  The per-file table as of 2026-09-19 is at
@@ -151,7 +152,8 @@ test; the expected rejections are recorded in
 The program `examples/ttauto` has interactive input but the defaults can be
 used:
 ```
-examples/ttauto << EOF
+build/examples/ttauto << EOF
 EOF
 ```
-This produces a file `pA_n=5_1_1_inv.m`.
+This produces a file `pA_n=5_1_1_inv.m` in the current directory; delete it
+before committing.

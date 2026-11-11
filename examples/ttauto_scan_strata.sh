@@ -3,7 +3,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TTAUTO_BIN="${TTAUTO_BIN:-${SCRIPT_DIR}/ttauto}"
+TTAUTO_BIN="${TTAUTO_BIN:-${SCRIPT_DIR}/../build/examples/ttauto}"
 MAX_PATH_LEN="${MAX_PATH_LEN:-5}"
 OUTPUT_MD="${OUTPUT_MD:-${SCRIPT_DIR}/ttauto_scan_strata.md}"
 SHOW_PROGRESS="${SHOW_PROGRESS:-1}"

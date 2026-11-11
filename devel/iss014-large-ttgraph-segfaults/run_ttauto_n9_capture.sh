@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-TTAUTO_BIN="${TTAUTO_BIN:-${REPO_DIR}/examples/ttauto}"
+TTAUTO_BIN="${TTAUTO_BIN:-${REPO_DIR}/build/examples/ttauto}"
 INPUT_FILE="${INPUT_FILE:-${SCRIPT_DIR}/ttauto_n9.in}"
 CAPTURE_MODE="${CAPTURE_MODE:-fast}"   # fast | gdb | rr
 RUN_ROOT="${RUN_ROOT:-${SCRIPT_DIR}/crash_runs}"
@@ -18,7 +18,7 @@ if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
 Usage: devel/iss014-large-ttgraph-segfaults/run_ttauto_n9_capture.sh
 
 Environment knobs:
-  TTAUTO_BIN   Path to ttauto executable (default: examples/ttauto)
+  TTAUTO_BIN   Path to ttauto executable (default: build/examples/ttauto)
   INPUT_FILE   Path to replay input file (default: devel/iss014-large-ttgraph-segfaults/ttauto_n9.in)
   CAPTURE_MODE fast | gdb | rr (default: fast)
   RUN_ROOT     Output directory root (default: devel/iss014-large-ttgraph-segfaults/crash_runs)

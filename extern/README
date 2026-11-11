@@ -1,1 +1,3 @@
-jlt version 7c1f6c3 from https://github.com/jeanluct/jlt
+jlt revision ea4e955 from https://github.com/jeanluct/jlt, vendored as
+ordinary files (not a submodule) with the local changes recorded in
+../dependencies.lock.json.
