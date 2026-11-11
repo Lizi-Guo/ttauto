@@ -258,6 +258,150 @@ train-track automaton; `ttauto catalog` and `ttauto campaign` generate and
 run one configuration per stratum. [docs/USAGE.md](docs/USAGE.md) is the
 full reference.
 
+## Configurations and estimated runtime
+
+The choices below are inferred from the recorded proof routes. The
+[result register](docs/HISTORICAL_RESULTS.json) supplies the exact target and
+surface data for every row; [the timing register](docs/RUNTIME_ESTIMATES.json)
+maps all 64 results to these choices and records the timing evidence and
+assumptions. No local search was rerun to make these estimates. A configuration
+for a lower-bound question does not by itself supply the historical coverage
+argument or an attaining map.
+
+Use these module profiles, with unlisted optional modules disabled:
+
+| Profile | Schema and source | Enabled modules |
+| --- | --- | --- |
+| **D**: disc spectra | `ttauto-proof-v1`; `newton_native` for large discs, `newton` for small arithmetic checks | `trace`, `schur`, `perron`, `mod2`, `peripheral`, `lefschetz`, `deck`, `cycle` |
+| **H**: orientable closed stratum | `ttauto-proof-v1`; `newton` | `trace`, `schur`, `perron`, `lefschetz` |
+| **Q**: nonorientable foliation on a closed surface | `ttauto-proof-v1`; `newton` | H modules plus `base_coupling` |
+| **F**: residual folding search | `ttauto-experiment-v1`; `native` for standard disc automata, or `automaton` for a supplied certified graph | `norm`, `cycle`, `homology`, `lefschetz`, `perron`; also `mod2` for discs; `geometry.kind: builtin` |
+
+For H/Q use trace horizon 32. Large-disc examples use native source horizon 48,
+pruning horizon 192 and `batch_nodes: 10000`. The saved common genus-three
+configuration already selects the applicable modules; inapplicable modules skip.
+In a spectral configuration, `target_polynomial` defines a strict lower-bound
+question. In F it selects equality with a root: omit it when searching for
+all smaller maps, and omit a manual `limits.depth` for an exhaustive bounded
+search. A fixed regular mark alone does not cover a whole closed stratum.
+
+### Which configuration produces which part of a result?
+
+`R(id)` below means the `current_query_configuration` of that ID in the result
+register. H/Q labels and disc indices are those in [docs/RESULTS.md](docs/RESULTS.md).
+The timing column states the phase being estimated, not a guarantee that the
+current programs will finish the entire historical proof.
+
+| Result | Configuration inferred from the records | Time and scope |
+| --- | --- | --- |
+| $D_3$ minimum | [`disc3-minimum.json`](experiments/proofs/disc3-minimum.json), including its `fold_path` witness | Plan **1–5 s** on one process. Saved CI lower-bound and small folding steps each took **0–1 s** at one-second resolution; the complete combined configuration has no separate saved timer. |
+| The other 25 one-pronged disc strata, $4\le n\le7$ | `R(Dn-sj)`, D; use F for the historical residuals, followed by the recorded attaining map | Per-stratum totals vary. Native estimates for the difficult recorded residuals are given below; there is no measured total for all 26 strata. |
+| All five genus-two minima | `R(G2-H-...)` or `R(G2-Q-...)` gives the arithmetic question. The recorded complete route uses F on the hyperelliptic quotient disc cases, then the branched-cover certificate | **30 s–25 min** for the six counted native quotient searches together; additional graph, cover and witness checks are not included. [`closed-g2.json`](experiments/closed-g2.json) covers only its regular-fixed-point sector. |
+| Common bound $c$ on 21 genus-three strata; in particular the lower half of the $H(1,1,1,1)$ and $Q(5,1,1,1)$ minima | [`genus3-bulk21.json`](experiments/proofs/genus3-bulk21.json); supply each attaining map separately | **4–6 s observed**, then **9–11 s observed** for full replay in saved CI. No large automaton is needed for this lower bound. |
+| Genus-three $Q(4,2,1,1)$ minimum | `R(G3-Q-4-2-1-1)`, Q, then its known attaining map; retain the joint invariant/anti-invariant argument | **1–30 min planning estimate** for the arithmetic stage, with low confidence: 1,107 historical coefficient triples and 54 joint sequences. This is not a measured current run. |
+| Genus-three $H(4),H(2,2),Q(4,4),Q(4,2,2)$ | Corresponding H/Q query plus the recorded periodic-point, rank-four or sector argument and attaining map | Arithmetic is the intended first step. The available summaries do not give comparable complete timings for these mixed proofs; **no defensible whole-proof ETA** is assigned. |
+| The other 12 proved genus-three strata | Corresponding H/Q query, then F on the required complete/projected graph or sectors if arithmetic leaves residuals; separate attainment | Native workload estimates for $H(3,1)$ and $H(2,1,1)$ appear below. The large projected and two-sector cases need their original inputs; **no single runtime estimate applies to this group**. For $Q(8)$, [`closed-g3-witness.json`](experiments/closed-g3-witness.json) checks only the upper witness. |
+| Global genus-three two-value reduction | [`genus3-all.json`](experiments/proofs/genus3-all.json) starts the spectral question; the recorded principal-stratum and P12 exclusions are additional steps | The **4–6 s** bulk computation covers only 21 strata. The complete two-value reduction has no measured current runtime; the remaining beta realization question is open. |
+| Eight open genus-three stratum intervals | Corresponding `R(G3-Q-...)`, Q, targeting the recorded **lower** polynomial; certify the recorded upper map separately | There is **no completion-time estimate for an exact minimum**. Neither an event budget nor an empty partial residual list resolves an open case. |
+| $D_{10},D_{12},D_{14},D_{18},D_{22},D_{26}$ | D with [`disc10.json`](experiments/proofs/disc10.json), [`disc12.json`](experiments/proofs/disc12.json), [`disc14.json`](experiments/proofs/disc14.json), [`disc18.json`](experiments/proofs/disc18.json), [`disc22.json`](experiments/proofs/disc22.json), [`disc26.json`](experiments/proofs/disc26.json) | Native enumeration scenarios below; orbit/cycle exclusions and attainment require additional time and evidence. |
+| Other puncture numbers in the all-$n$ corollary | Apply the cited general theorem and known small cases | No new enumeration is required. |
+
+The genus-two quotient cases are `(5,0)` for H(2), `(6,0)` for H(1,1),
+`(3,0)` and `(4,0)` for Q(2,2), `(5,0)` with the regular branch-point condition
+for Q(2,1,1), and `(5,3)`, `(6,1)`, `(6,4)` for Q(1,1,1,1).
+For a small disc row `(n,I,O,j)`, adapt
+[`disc3-native.json`](experiments/disc3-native.json): set `punctures=n`,
+`inner_prongs=[1]*n+I`, `inner_colors=["puncture"]*n+["filled"]*len(I)`,
+`outer_prongs=[O]`, `source.stratum_index=j`, and the row's rational `upper`.
+For a closed F search, the historical complete/projected graph must be supplied;
+a generic auxiliary-mark catalog is not a substitute for its coverage proof.
+
+To extract any recorded spectral query without a search:
+
+```python
+import json
+from pathlib import Path
+
+records = json.loads(Path("docs/HISTORICAL_RESULTS.json").read_text())["records"]
+row = next(r for r in records if r["id"] == "G3-Q-4-2-1-1")
+Path("query.json").write_text(json.dumps(row["current_query_configuration"], indent=2))
+```
+
+```sh
+ttauto validate query.json
+ttauto run query.json --output runs/query --events 100000
+ttauto run query.json --output runs/query --resume --events 1000000
+```
+
+Event limits are total budgets, not time limits. The register's 1,000-event
+defaults and the large-disc examples are starting budgets. Increase them on
+resume, or omit `limits.events` for an uncapped source enumeration. Exhausted
+`models`, `cycle_nodes` or `base_catalog_nodes` limits leave unresolved cases;
+use a new residual run to change those limits. Whole minima additionally need
+matching, in-scope geometric witnesses. Some historical coverage arguments and
+stronger cycle obstructions still need separate integration, so these inferred
+recipes are not claims that every result is already obtainable with one command.
+
+### Native search estimates
+
+The following are **enumeration-only scenarios**, excluding graph construction,
+Python/SQLite overhead, orbit tests, geometric certification and replay. The
+historical algorithms and current module choices can visit different trees.
+For folding, assume **10,000–500,000 prefixes/s per worker**: the saved H(3,1)
+search processed 12,474,712 prefixes in 25–66 s on local storage, but took 937 s
+in a paired shared-storage control. The wider assumed range allows for different
+matrix dimensions and per-prefix work; it is not a runtime bound.
+
+| Historical folding workload | Prefixes | Estimated native time, one worker |
+| --- | ---: | --- |
+| D6-s3 residual | 20,562 | 0.04–2.1 s |
+| D6-s6 residual groups | 15,700,700 | 31 s–26 min |
+| D7-s6 last three stages | 195,682,145 | 6.5 min–5.4 h |
+| D7-s11 final phase only | 2,809,458 | 6 s–4.7 min |
+| Six genus-two quotient searches | 14,853,946 | 30 s–25 min |
+| Genus-three H(2,1,1) search | 190,150,702 | 6.3 min–5.3 h |
+
+These phase counts are not complete timings for the surrounding proofs. As a
+separate example of **rediscovering** a known attaining map, the archived
+Q(5,1,1,1) automaton had 5,135,719 unexcluded start states. Its observed sample
+rate of 0.0762 s/start suggests about **109 worker-hours**, or **1–5 days with
+two workers** allowing a factor-two variation, before graph construction and
+audits. The historical memory admission was 128 GiB. Using the known witness
+and the bulk lower bound avoids that rediscovery search.
+
+For large-disc coefficients, the initial distributed waves averaged about
+0.52–0.85 million nodes/s per worker. The scenario below assumes
+**0.2–1 million nodes/s per worker**, applied to the final historical node counts.
+The current engine uses one worker per run. The 64-worker column is an **ideal
+externally partitioned workload**, not a supported `workers` configuration flag
+or a measured speedup; a valid partition and coverage accounting are required.
+
+| Disc | Historical native nodes | One-worker scenario | Ideal 64-worker scenario |
+| --- | ---: | --- | --- |
+| D10 | Not recorded in the consulted summary | 12–60 h (low-confidence proxy) | 11–56 min (same proxy) |
+| D12 | 18,890,600,014 | 5.2–26 h | 5–25 min |
+| D14 | 31,881,873,712 | 8.9–44 h | 8–42 min |
+| D18 | 1,119,625,304,756 | 13–65 days | 4.9–24 h |
+| D22 | 14,387,847,199,303 | 167–833 days | 2.6–13 days |
+| D26 | 151,539,175,623,868 | 4.8–24 years | 27–137 days |
+
+The D10 proxy scales the D12 estimate by retained spectra, `358430/156012`;
+its 12,431,171,156 recorded coefficient completions are a different counter.
+These estimates are sensitive to pruning, hardware and batching. The historical
+distributed enumeration windows were about **10 min, 14 min, 3 h, 9.8 h and
+5.2 days** for D12 through D26, using changing allocations and continuations;
+they are not measurements on a constant 64-worker machine. Also, those campaigns
+used a theorem to remove smaller one-pronged cores, whereas the current disc
+examples enumerate all `m=3,...,n`. The scenario is a workload scale, not a
+prediction that the current serial implementation completes within that time.
+
+Finally, the saved final auditor invocations took **19.5 min, 4.1 min, 1.9 min,
+3.5 h and 11.2 h**, respectively. They reused existing evidence, including prior
+replay checkpoints in D18/D22/D26, and must not be reported as fresh search times.
+The independent saved CI runs used for the small examples are
+[run 42953696873](https://github.com/Lizi-Guo/ttauto/actions/runs/42953696873) and
+[run 42953012802](https://github.com/Lizi-Guo/ttauto/actions/runs/42953012802).
+
 ## Repository layout
 
 | Path | Contents |
