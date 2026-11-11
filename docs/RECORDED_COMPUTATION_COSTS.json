@@ -1,0 +1,728 @@
+{
+  "schema": "ttauto-recorded-computation-costs-v1",
+  "documentation_date": "2026-11-10",
+  "new_mathematical_searches_run": 0,
+  "notes": [
+    "Only historical measurements or explicitly identified timestamp reconstructions are included.",
+    "Timings cover the named stage, not necessarily the full discovery or proof.",
+    "CPU worker counts or allocations are distinct from sampled CPU utilization. Missing peaks and totals are null."
+  ],
+  "observations": [
+    {
+      "id": "D3-D5",
+      "scope": "Seven-stratum historical acceptance run, including historical attainment checks",
+      "seconds": 52.8639372,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a076d3-7736-7642-86cf-f9811f85547f",
+        "command_id": "exec-3cb73c79-092f-4ea1-804e-ed2b0e27f6e5",
+        "completed_utc": "2026-09-15T15:17:32.124Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-H1111",
+      "scope": "Search and attainment verification; published lower theorem excluded from timing",
+      "seconds": 5.2895202,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-319502f8-8110-415c-9426-42f0254f4436",
+        "completed_utc": "2026-09-29T22:30:54.397Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-H211",
+      "scope": "Complete native norm search; 190150702 prefixes",
+      "seconds": 978.3866417,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-50e0d0b0-3945-491e-808d-b427dd62a4ad",
+        "completed_utc": "2026-09-30T00:13:27.801Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q53",
+      "scope": "Input export and complete native search at cutoff 1583/1000",
+      "seconds": 455.1680067,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-9a957f13-682f-4138-a4ae-2f1903707239",
+        "completed_utc": "2026-09-30T01:47:52.195Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-H4-sector",
+      "scope": "Regular period-two sector search at cutoff 1557/1000; not whole-stratum runtime",
+      "seconds": 1997.7726654,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-d45859e2-0ffd-4e96-973a-dd5356b56c0f",
+        "completed_utc": "2026-09-30T11:09:17.116Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q4211",
+      "scope": "Joint-homology lower-bound arithmetic verification only",
+      "seconds": 2.9850173,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0f899-466e-7af0-8b38-10b27fd38f9c",
+        "command_id": "exec-b7cb478d-656c-43a8-ab27-b1e85e588d05",
+        "completed_utc": "2026-10-05T11:14:48.562Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q8-sector",
+      "scope": "Regular-fixed-point sector search below 2; not whole-stratum runtime",
+      "seconds": 126.5048741,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-d7d2d4de-cb8c-4931-bf49-19c46b7066da",
+        "completed_utc": "2026-09-30T08:08:19.617Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q332-stage",
+      "scope": "Earlier complete native search below 3/2; not final minimum computation",
+      "seconds": 1799.2202499,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-fb42397f-05f9-406d-adef-055a2eac4c6c",
+        "completed_utc": "2026-09-30T03:45:10.021Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q431-stage",
+      "scope": "Earlier complete native search below 3/2; not final minimum computation",
+      "seconds": 1346.8014936,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-d19d3fbf-1729-4195-96ca-fb9f7199fe8a",
+        "completed_utc": "2026-09-30T02:26:20.267Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q521-stage",
+      "scope": "Earlier complete native search below 8/5; not final minimum computation",
+      "seconds": 3627.7272954,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-2b3c4ef5-cf38-41ec-aaca-510bc7bfa346",
+        "completed_utc": "2026-09-30T08:57:15.826Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q62-stage",
+      "scope": "Input export and earlier complete native search below 8/5; not final minimum computation",
+      "seconds": 253.2740054,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-3a1bbfca-a39e-4fae-bc51-5bccf9a86e65",
+        "completed_utc": "2026-09-30T01:01:12.896Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q71-stage",
+      "scope": "Earlier complete native search below 431/250; not final minimum computation",
+      "seconds": 396.0415778,
+      "cpu_workers": 1,
+      "time_kind": "recorded command elapsed time, including process startup",
+      "source": {
+        "kind": "saved command log",
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "command_id": "exec-54441cc9-774f-40e6-bf83-8434b22906f0",
+        "completed_utc": "2026-09-30T00:49:53.916Z",
+        "exit_code": 0
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G2",
+      "scope": "Six quotient-disc searches, with the earlier (5,0) certificate reused; excludes exploratory runs and later proof audits",
+      "seconds": 3608.662972,
+      "summed_command_seconds": 4379.1096513,
+      "peak_search_processes": 3,
+      "cpu_note": "Three overlapping production search commands, each running one search at a time; inferred parallelism, not a sampled CPU-utilization peak.",
+      "time_kind": "elapsed campaign window inferred from saved command durations and completion timestamps",
+      "source": {
+        "thread_id": "01a0d904-da90-70f3-a942-5d072ed308c9",
+        "commands": [
+          {
+            "command_id": "exec-3d1c745c-4d17-45b3-b02d-7cf16d711a7e",
+            "completed_utc": "2026-09-29T21:31:48.317Z",
+            "seconds": 1.5539719,
+            "command": "& ./review/run_genus2_strata_search_20260929.ps1 -N 4 -Stratum 0"
+          },
+          {
+            "command_id": "exec-1be75839-df01-4734-950f-a69443a838c2",
+            "completed_utc": "2026-09-29T21:32:21.251Z",
+            "seconds": 21.5335727,
+            "command": "& ./review/run_genus2_strata_search_20260929.ps1 -N 6 -Stratum 0"
+          },
+          {
+            "command_id": "exec-0f2aac1d-0017-4a20-be0f-4120af47251f",
+            "completed_utc": "2026-09-29T21:44:59.755Z",
+            "seconds": 779.773791,
+            "command": "& ./review/run_genus2_strata_search_20260929.ps1 -N 6 -Stratum 1"
+          },
+          {
+            "command_id": "exec-daae9e52-2258-4420-ba78-86fd448fa544",
+            "completed_utc": "2026-09-29T22:31:55.426Z",
+            "seconds": 3576.2483157,
+            "command": "& ./review/run_genus2_strata_search_20260929.ps1 -N 6 -Stratum 4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "G3-H31",
+      "scope": "Complete native search on local storage; graph construction and proof audits excluded",
+      "seconds_range": [
+        25.156,
+        30.641181947197765,
+        66.11538229277357
+      ],
+      "cpu_workers": 1,
+      "source": {
+        "path": "genus3_sprint_20261001/GOAL_STATE.json",
+        "sha256": "f81fd3ce63bdfd3ac968c834c1aded1cfa925b7dcacc4f800046e4748e44a625"
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-H22-sector",
+      "scope": "Fixed-singularity sector search only",
+      "seconds": 2547.5285470485687,
+      "cpu_workers": 1,
+      "source": {
+        "path": "genus3_sprint_20261001/GOAL_STATE.json",
+        "sha256": "f81fd3ce63bdfd3ac968c834c1aded1cfa925b7dcacc4f800046e4748e44a625",
+        "field": "H22_fixed_completed_update.seconds"
+      },
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "D12",
+      "scope": "Distributed coefficient enumeration elapsed window, including resumptions; later proof audits excluded",
+      "seconds": 603.5914011262357,
+      "initial_wave_cpu_workers": 64,
+      "peak_cpu_workers": null,
+      "cpu_note": "Initial wave allocation is recorded; maximum over all resumptions was not reconstructed",
+      "source": {
+        "archive": "output/disc_even_20261026/D_all5_minima_certificates_and_final_audits_20261103.tar.gz",
+        "archive_sha256": "4b8eb3b555dc094f816b86e4d8182c1774e632992ae24e4fd90bbfcb84c16ffb",
+        "native_member": "n12/strong/native_status.json",
+        "native_sha256": "c60b9821399cf4cd7abdb9415705bb6cd6f1fe67d726aa6fcde42964b5c77fcc",
+        "certificate_member": "n12/minimum_certificate.json",
+        "certificate_sha256": "65a77ae6fe0fbfdbeddf56e0276dabe1388a1e054ae40c946ac78c0d2953a9ad",
+        "first_wave_file": "output/disc_even_20261026/n12/native_status.json",
+        "first_wave_sha256": "d12a610a9fc4ea3aadc919571ca06b4d9bf0432b006cc54ae5975e0637bc90f5"
+      }
+    },
+    {
+      "id": "D14",
+      "scope": "Distributed coefficient enumeration elapsed window, including resumptions; later proof audits excluded",
+      "seconds": 840.6704608942382,
+      "initial_wave_cpu_workers": 60,
+      "peak_cpu_workers": null,
+      "cpu_note": "Initial wave allocation is recorded; maximum over all resumptions was not reconstructed",
+      "source": {
+        "archive": "output/disc_even_20261026/D_all5_minima_certificates_and_final_audits_20261103.tar.gz",
+        "archive_sha256": "4b8eb3b555dc094f816b86e4d8182c1774e632992ae24e4fd90bbfcb84c16ffb",
+        "native_member": "n14/strong/native_status.json",
+        "native_sha256": "8322845dc91de3c2eae4113fc18a300cb08286edb3875c74c25f91f13e6415fb",
+        "certificate_member": "n14/minimum_certificate.json",
+        "certificate_sha256": "75d41e7fe54731d34593eb0d428f934cfcebbcf064ed642b66d1ba6e7a887cbf",
+        "first_wave_file": "output/disc_even_20261026/n14/native_status.json",
+        "first_wave_sha256": "b036ddf584d2b4713e8e911c97bb81ab0e94d0ee76357eb243350dad765ce7bc"
+      }
+    },
+    {
+      "id": "D18",
+      "scope": "Distributed coefficient enumeration elapsed window, including resumptions; later proof audits excluded",
+      "seconds": 10773.982938635396,
+      "initial_wave_cpu_workers": 64,
+      "peak_cpu_workers": null,
+      "cpu_note": "Initial wave allocation is recorded; maximum over all resumptions was not reconstructed",
+      "source": {
+        "archive": "output/disc_even_20261026/D_all5_minima_certificates_and_final_audits_20261103.tar.gz",
+        "archive_sha256": "4b8eb3b555dc094f816b86e4d8182c1774e632992ae24e4fd90bbfcb84c16ffb",
+        "native_member": "n18/strong/native_status.json",
+        "native_sha256": "7f811bc42a758dcc7bd2ad8360c2317275ba7f2876b58680d6b2a6678b742829",
+        "certificate_member": "n18/minimum_certificate.json",
+        "certificate_sha256": "a253879495c29b729a1d8be040520af0881699039849f3bbeed8b49162627ce8",
+        "first_wave_file": "output/disc_even_20261026/n18/native_status.json",
+        "first_wave_sha256": "5cf5ff49856f8397088bd7b87bf32f66afd5116ed1a3574e3b5129b654e9f590"
+      }
+    },
+    {
+      "id": "D22",
+      "scope": "Distributed coefficient enumeration elapsed window, including resumptions; later proof audits excluded",
+      "seconds": 35146.90479270648,
+      "initial_wave_cpu_workers": 96,
+      "peak_cpu_workers": null,
+      "cpu_note": "Initial wave allocation is recorded; maximum over all resumptions was not reconstructed",
+      "source": {
+        "archive": "output/disc_even_20261026/D_all5_minima_certificates_and_final_audits_20261103.tar.gz",
+        "archive_sha256": "4b8eb3b555dc094f816b86e4d8182c1774e632992ae24e4fd90bbfcb84c16ffb",
+        "native_member": "n22/strong/native_status.json",
+        "native_sha256": "3513ae1d808867e80f78369c931bd40c0ff73caeb0c955aec997c0b16d6b0c02",
+        "certificate_member": "n22/minimum_certificate.json",
+        "certificate_sha256": "0916ce66651a8a5e3cb9fc57f8e069451e1ba878887dad7f5aae1aa547fb9e1f",
+        "first_wave_file": "output/disc_even_20261026/n22/native_status.json",
+        "first_wave_sha256": "4d256ea2fc493cf0c4940ad14ff881ee91cdb6ad6496a29e5e32d1e3cdd74419"
+      }
+    },
+    {
+      "id": "D26",
+      "scope": "Distributed coefficient enumeration elapsed window, including resumptions; later proof audits excluded",
+      "seconds": 445967.6871561259,
+      "initial_wave_cpu_workers": 96,
+      "peak_cpu_workers": null,
+      "cpu_note": "Initial wave allocation is recorded; maximum over all resumptions was not reconstructed",
+      "source": {
+        "archive": "output/disc_even_20261026/D_all5_minima_certificates_and_final_audits_20261103.tar.gz",
+        "archive_sha256": "4b8eb3b555dc094f816b86e4d8182c1774e632992ae24e4fd90bbfcb84c16ffb",
+        "native_member": "n26/strong/native_status.json",
+        "native_sha256": "83201367fbd15c0c0187289e418ead8cb68efec54aecf6b871eed2713c67e431",
+        "certificate_member": "n26/minimum_certificate.json",
+        "certificate_sha256": "79a4726bf3bc99784a6ff1472ab2baadd76b22e1e65d07cb20e0750db775951f",
+        "first_wave_file": "output/disc_even_20261026/n26/native_status.json",
+        "first_wave_sha256": "4c643b59df74db17fbb0d3c36f601d5ba19d6400b3a6eb1f9bd9440bfc7dfa7a"
+      }
+    },
+    {
+      "id": "D6",
+      "scope": "Core certification and all 25 residual-search groups",
+      "core_seconds": 94.98400000000402,
+      "residual_summed_worker_elapsed_seconds": 4314.766000000003,
+      "residual_groups": 25,
+      "configured_worker_limit": 4,
+      "wall_time_total_seconds": null,
+      "source": [
+        {
+          "archive": "minimal_recheck_20261006/small-results.zip",
+          "project_relative_path": "review/certificates/n6_recomputed_20260915/core_execution.json",
+          "member": "da4c13b8187394dc6ff5f61b223a3b6d8daa17f01a07a3b203e01319b11fb9dd",
+          "sha256": "da4c13b8187394dc6ff5f61b223a3b6d8daa17f01a07a3b203e01319b11fb9dd"
+        },
+        {
+          "archive": "minimal_recheck_20261006/small-results.zip",
+          "project_relative_path": "review/certificates/n6_recomputed_20260915/residuals/summary.json",
+          "member": "aabab8ddc705d9dd9f4c5a3ce3998c51a1a353b3751b931da8433cd503750a3b",
+          "sha256": "aabab8ddc705d9dd9f4c5a3ce3998c51a1a353b3751b931da8433cd503750a3b"
+        }
+      ]
+    },
+    {
+      "id": "D7-endpoints",
+      "scope": "Three endpoint searches only; complete 12-stratum campaign timing was not recovered",
+      "seconds_range": [
+        4.638357162475586,
+        17.047349452972412,
+        109.80570936203003
+      ],
+      "wall_time_total_seconds": null,
+      "cpu_workers": 1,
+      "source": [
+        {
+          "archive": "minimal_recheck_20261006/small-results.zip",
+          "project_relative_path": "review/certificates/n7_endpoints_20260915/s6/endpoint_search/result.json",
+          "member": "4832f917a7b9738de71266d0d2fb24f1bbde57c8486258d2bd3789ba3d25b444",
+          "sha256": "4832f917a7b9738de71266d0d2fb24f1bbde57c8486258d2bd3789ba3d25b444"
+        },
+        {
+          "archive": "minimal_recheck_20261006/small-results.zip",
+          "project_relative_path": "review/certificates/n7_endpoints_20260915/s10/endpoint_search_cached/result.json",
+          "member": "50adb979d9a4d7bcc2552d1fa997b0423a12290741cd47ca7f89a955111e3d51",
+          "sha256": "50adb979d9a4d7bcc2552d1fa997b0423a12290741cd47ca7f89a955111e3d51"
+        },
+        {
+          "archive": "minimal_recheck_20261006/small-results.zip",
+          "project_relative_path": "review/certificates/n7_endpoints_20260915/s11/endpoint_search_cached/result.json",
+          "member": "6ead8c5e52b9ffbfdfc56026fe3d5a0991900d5b2bf6c1f446032ebd2e3fd388",
+          "sha256": "6ead8c5e52b9ffbfdfc56026fe3d5a0991900d5b2bf6c1f446032ebd2e3fd388"
+        }
+      ],
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-Q311111-geometry",
+      "scope": "Complete graph geometry/input audit; the stratum minimum remains open",
+      "seconds": 95304.67144005094,
+      "configured_worker_limit": 2,
+      "source": {
+        "archive": "minimal_recheck_20261010/results.zip",
+        "project_relative_path": "genus3_sprint_20261001/Q311111_complete_parallel_geometry.acceptance_20261005.json",
+        "member": "a767ab75b588bb016c9a4f51fd406125e1a06cc2f38669d025317d542e1fb276",
+        "sha256": "a767ab75b588bb016c9a4f51fd406125e1a06cc2f38669d025317d542e1fb276"
+      }
+    },
+    {
+      "id": "G3-Q41111-geometry",
+      "scope": "Complete graph geometry/input audit; the stratum minimum remains open",
+      "seconds": 103079.75601449609,
+      "configured_worker_limit": 2,
+      "source": {
+        "archive": "minimal_recheck_20261010/results.zip",
+        "project_relative_path": "genus3_sprint_20261001/Q41111_complete_parallel_geometry.acceptance_20261005.json",
+        "member": "20ed8f07f15a5fea895523876f7a2f539af619ede23f4b98d08ff08944acb782",
+        "sha256": "20ed8f07f15a5fea895523876f7a2f539af619ede23f4b98d08ff08944acb782"
+      }
+    },
+    {
+      "id": "D10",
+      "scope": "Initial enumeration plus exact spectral filtering, from submission intent to completed audit; later cycle exclusions excluded",
+      "seconds": 1568.7491331100464,
+      "time_kind": "campaign elapsed window including scheduling and recovery",
+      "peak_allocated_logical_cpus": 380,
+      "cpu_workers_at_allcpu_wave": [
+        64,
+        60,
+        64,
+        96,
+        96
+      ],
+      "source": {
+        "archive": "output/disc10_server_20261025/D10_complete_evidence.tar.gz",
+        "archive_sha256": "1c2d93a981c88d717c1405dc699452b171a6e4b98db109683274c33449db3a24",
+        "members": [
+          {
+            "member": "submission-intent.json",
+            "sha256": "5476d391c9500ab5f8aaba97737eb3ce7b282df886e25022fe4793549e2d89b8"
+          },
+          {
+            "member": "final_audit.json",
+            "sha256": "31911cb10db8071f6b9ce55dcdf92f1ee2f8bf3c98162014904f004a0e520494"
+          },
+          {
+            "member": "allcpu-submission.json",
+            "sha256": "f0dfbc122ecc827093530ecf8be31df53f69445891adc8eda0c1416f75cca51a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "D3-CI",
+      "scope": "Separate lower-bound and folding checks",
+      "seconds_range": [
+        0,
+        1
+      ],
+      "timestamp_resolution_seconds": 1,
+      "cpu_workers": 1,
+      "source": [
+        {
+          "run_id": 42953696873,
+          "url": "https://github.com/Lizi-Guo/ttauto/actions/runs/42953696873",
+          "head_sha": "23c0224b2dc7b23f2ec8432da7382bb4133c15e0",
+          "runner": "ubuntu-latest",
+          "timestamp_resolution_seconds": 1,
+          "native_build_seconds": 74,
+          "disc3_folding_seconds": 0,
+          "disc3_lower_seconds": 0,
+          "genus3_bulk21_seconds": 6,
+          "genus3_bulk21_full_replay_seconds": 11
+        },
+        {
+          "run_id": 42953012802,
+          "url": "https://github.com/Lizi-Guo/ttauto/actions/runs/42953012802",
+          "head_sha": "9f53121a6b35748ce36504e4ec536e1518fb9587",
+          "runner": "ubuntu-latest",
+          "timestamp_resolution_seconds": 1,
+          "native_build_seconds": 56,
+          "disc3_folding_seconds": 1,
+          "disc3_lower_seconds": 0,
+          "genus3_bulk21_seconds": 4,
+          "genus3_bulk21_full_replay_seconds": 9
+        }
+      ],
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    },
+    {
+      "id": "G3-bulk21-CI",
+      "scope": "Common lower-bound arithmetic for 21 strata; excludes attainment and other proof stages",
+      "seconds_range": [
+        4,
+        6
+      ],
+      "cpu_workers": 1,
+      "source": [
+        {
+          "run_id": 42953696873,
+          "url": "https://github.com/Lizi-Guo/ttauto/actions/runs/42953696873",
+          "head_sha": "23c0224b2dc7b23f2ec8432da7382bb4133c15e0",
+          "runner": "ubuntu-latest",
+          "timestamp_resolution_seconds": 1,
+          "native_build_seconds": 74,
+          "disc3_folding_seconds": 0,
+          "disc3_lower_seconds": 0,
+          "genus3_bulk21_seconds": 6,
+          "genus3_bulk21_full_replay_seconds": 11
+        },
+        {
+          "run_id": 42953012802,
+          "url": "https://github.com/Lizi-Guo/ttauto/actions/runs/42953012802",
+          "head_sha": "9f53121a6b35748ce36504e4ec536e1518fb9587",
+          "runner": "ubuntu-latest",
+          "timestamp_resolution_seconds": 1,
+          "native_build_seconds": 56,
+          "disc3_folding_seconds": 1,
+          "disc3_lower_seconds": 0,
+          "genus3_bulk21_seconds": 4,
+          "genus3_bulk21_full_replay_seconds": 9
+        }
+      ],
+      "cpu_note": "One mathematical worker in the named run; runtime or system helper threads are not measured here."
+    }
+  ],
+  "genus3_coverage": [
+    {
+      "result_id": "G3-H-1-1-1-1",
+      "stratum": "H(1,1,1,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-H1111",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-5-1-1-1",
+      "stratum": "Q(5,1,1,1)",
+      "status": "minimum proved",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-H-2-1-1",
+      "stratum": "H(2,1,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-H211",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-6-1-1",
+      "stratum": "Q(6,1,1)",
+      "status": "minimum proved",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-H-4",
+      "stratum": "H(4)",
+      "status": "minimum proved",
+      "observation_id": "G3-H4-sector",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-H-3-1",
+      "stratum": "H(3,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-H31",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-3-3-2",
+      "stratum": "Q(3,3,2)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q332-stage",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-5-3",
+      "stratum": "Q(5,3)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q53",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-H-2-2",
+      "stratum": "H(2,2)",
+      "status": "minimum proved",
+      "observation_id": "G3-H22-sector",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-4-3-1",
+      "stratum": "Q(4,3,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q431-stage",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-4-2-1-1",
+      "stratum": "Q(4,2,1,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q4211",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-3-2-2-1",
+      "stratum": "Q(3,2,2,1)",
+      "status": "minimum proved",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-4-4",
+      "stratum": "Q(4,4)",
+      "status": "minimum proved",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-4-2-2",
+      "stratum": "Q(4,2,2)",
+      "status": "minimum proved",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-6-2",
+      "stratum": "Q(6,2)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q62-stage",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-5-2-1",
+      "stratum": "Q(5,2,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q521-stage",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-2-2-2-2",
+      "stratum": "Q(2,2,2,2)",
+      "status": "minimum proved",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-7-1",
+      "stratum": "Q(7,1)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q71-stage",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-8",
+      "stratum": "Q(8)",
+      "status": "minimum proved",
+      "observation_id": "G3-Q8-sector",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-4-1-1-1-1",
+      "stratum": "Q(4,1,1,1,1)",
+      "status": "open",
+      "observation_id": "G3-Q41111-geometry",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-3-3-1-1",
+      "stratum": "Q(3,3,1,1)",
+      "status": "open",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-3-2-1-1-1",
+      "stratum": "Q(3,2,1,1,1)",
+      "status": "open",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-3-1-1-1-1-1",
+      "stratum": "Q(3,1,1,1,1,1)",
+      "status": "open",
+      "observation_id": "G3-Q311111-geometry",
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-2-2-2-1-1",
+      "stratum": "Q(2,2,2,1,1)",
+      "status": "open",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-2-2-1-1-1-1",
+      "stratum": "Q(2,2,1,1,1,1)",
+      "status": "open",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-2-1-1-1-1-1-1",
+      "stratum": "Q(2,1,1,1,1,1,1)",
+      "status": "open",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    },
+    {
+      "result_id": "G3-Q-1-1-1-1-1-1-1-1",
+      "stratum": "Q(1,1,1,1,1,1,1,1)",
+      "status": "open",
+      "observation_id": null,
+      "full_proof_elapsed_seconds": null
+    }
+  ],
+  "global_genus3": {
+    "scope": "Reduction to two possible values, not determination of the global minimum",
+    "full_elapsed_seconds": null,
+    "peak_cpu_workers": null,
+    "reason": "No complete comparable timing/allocation record was recovered; partial stages must not be summed across overlapping or repeated runs."
+  }
+}
