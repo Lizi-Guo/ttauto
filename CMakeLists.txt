@@ -69,9 +69,21 @@ function(ttauto_add_compile_flags target)
     $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall>
     $<$<AND:$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>,$<CONFIG:Release>>:-O3>
     $<$<AND:$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>,$<CONFIG:Release>>:-O3>
-    $<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:-ffast-math>
-    $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-ffast-math>)
+    $<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:-fno-fast-math>
+    $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fno-fast-math>)
 endfunction()
+
+# All algorithm and numerical-library sources are ordinary files in this tree.
+# Configuration never downloads dependencies or invokes Git.
+foreach(required_source IN ITEMS
+    include/traintracks/traintrack.hpp
+    include/ttauto/ttfoldgraph.hpp
+    extern/jlt/jlt/csparse.hpp
+    extern/jlt/extern/CSparse/Source/cs_util.c)
+  if(NOT EXISTS "${CMAKE_SOURCE_DIR}/${required_source}")
+    message(FATAL_ERROR "Incomplete source tree: missing ${required_source}")
+  endif()
+endforeach()
 
 file(GLOB CSPARSE_SOURCES CONFIGURE_DEPENDS
   "${CMAKE_SOURCE_DIR}/extern/jlt/extern/CSparse/Source/*.c")
@@ -98,7 +110,7 @@ target_include_directories(ttauto PUBLIC
   "${CMAKE_SOURCE_DIR}/extern/jlt/extern/CSparse/Include")
 target_link_libraries(ttauto PUBLIC csparse)
 ttauto_add_compile_flags(ttauto)
-ttauto_set_inplace_output(ttauto "${CMAKE_SOURCE_DIR}/lib")
+ttauto_set_inplace_output(ttauto "${CMAKE_BINARY_DIR}/lib")
 
 function(ttauto_add_program source_file output_dir target_prefix)
   get_filename_component(program_name "${source_file}" NAME_WE)
@@ -107,6 +119,10 @@ function(ttauto_add_program source_file output_dir target_prefix)
   add_executable(${target_name} "${source_file}")
   target_link_libraries(${target_name} PRIVATE ttauto)
   ttauto_add_compile_flags(${target_name})
+
+  if(target_prefix STREQUAL "test")
+    target_compile_options(${target_name} PRIVATE -UNDEBUG)
+  endif()
 
   set_target_properties(${target_name} PROPERTIES OUTPUT_NAME "${program_name}")
   ttauto_set_inplace_output(${target_name} "${output_dir}")
@@ -139,14 +155,14 @@ file(GLOB TTAUTO_EXAMPLE_SOURCES CONFIGURE_DEPENDS
   "${CMAKE_SOURCE_DIR}/examples/*.cpp")
 
 foreach(example_source ${TTAUTO_EXAMPLE_SOURCES})
-  ttauto_add_program("${example_source}" "${CMAKE_SOURCE_DIR}/examples" "example")
+  ttauto_add_program("${example_source}" "${CMAKE_BINARY_DIR}/examples" "example")
 endforeach()
 
 file(GLOB TTAUTO_TEST_SOURCES CONFIGURE_DEPENDS
   "${CMAKE_SOURCE_DIR}/tests/*.cpp")
 
 foreach(test_source ${TTAUTO_TEST_SOURCES})
-  ttauto_add_program("${test_source}" "${CMAKE_SOURCE_DIR}/tests" "test")
+  ttauto_add_program("${test_source}" "${CMAKE_BINARY_DIR}/tests" "test")
 endforeach()
 
 file(GLOB TTAUTO_TESTSUITE_SOURCES CONFIGURE_DEPENDS
@@ -167,3 +183,5 @@ if(TTAUTO_ENABLE_SLOW_TESTS)
   set_tests_properties(testsuite_test_strata_braids_markdown PROPERTIES
     LABELS "deterministic;integration")
 endif()
+
+include(cmake/Pipeline.cmake)

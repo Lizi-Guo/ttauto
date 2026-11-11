@@ -1,0 +1,43 @@
+{
+  "schema": "ttauto-proof-migration-v1",
+  "sources": [
+    {
+      "project_source": "output/disc_even_20261026/trace_prefix.cpp",
+      "sha256": "4255448340ed2fe4c3a10334e32856342b08a6f8db67a32a684d7090219675ea"
+    },
+    {
+      "project_source": "output/disc_even_20261026/cycle_engine.py",
+      "sha256": "dd33f84d6b0ce40e54c53bbcf1e125942657d10c5151b6028c8fc55a86df56dc"
+    },
+    {
+      "project_source": "output/disc_even_20261026/branch_coupling_exact.py",
+      "sha256": "0993d85defba2b482651983201e3030483cd07e9c9e800d05523845d1a26a764"
+    },
+    {
+      "project_source": "output/disc_even_20261026/PERIPHERAL_TRACE_BOUND.txt",
+      "sha256": "394e6b7e35c97d1203b033653274d0a5903ac543903eb34b025b4cad3b5df9ae"
+    },
+    {
+      "project_source": "review/compute_n7_lower_20260915.py",
+      "sha256": "b3a5ec479d0aee21254904f345ccded4bd8619a06da3d6e4acca07cfb3fb3fb2"
+    },
+    {
+      "project_source": "review/anti8_base_coupling_diagnostic_20261010.py",
+      "sha256": "99752686dc613ddb37503677c792091bfc22b3ced4394154b456647ad96cdbbe"
+    },
+    {
+      "project_source": "review/genus3_bulk_homology_lower_diagnostic_v2_20261010.py",
+      "sha256": "75a769e9ea288ea9221d68beef88963b0dfcfcc9465385f07c968209fd46bd4f"
+    },
+    {
+      "project_source": "review/genus3_bulk_homology_target_lower_20261010.tex",
+      "sha256": "293fa1e40e86ced9388e531cfe512a87a0d39b26f31519c58af7f85b57272898"
+    },
+    {
+      "project_source": "review/reciprocal_degree6_small_house_catalogue_20261010.py",
+      "sha256": "1c0ff274fd1863d0340ed9ab7964b12dd18511b8dac3093f70ded35d8b5c1ba5"
+    }
+  ],
+  "method": "Port mathematical kernels into package modules; do not execute server orchestration or historical external classifiers.",
+  "historical_result_flags_imported_as_proofs": false
+}

@@ -28,6 +28,19 @@ lib/ttauto.lib
 examples/ttauto*.exe
 tests/test_*.exe
 
+# Unified pipeline outputs and local development environments
+build*/
+runs/
+dist/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.venv/
+*.sqlite3
+*.sqlite3-journal
+*.tmp
+*.zip
+
 # LaTeX build artefacts for notes under devel/
 devel/**/*.aux
 devel/**/*.log

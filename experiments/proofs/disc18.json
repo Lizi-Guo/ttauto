@@ -1,0 +1,53 @@
+{
+  "schema": "ttauto-proof-v1",
+  "name": "D18-all-puncture-fillings",
+  "surface": {
+    "kind": "disc",
+    "punctures": 18
+  },
+  "upper": "2911/2500",
+  "target_polynomial": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -2,
+    0,
+    0,
+    0,
+    -2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "source": {
+    "kind": "newton_native",
+    "executable": "../../build/bin/ttauto_trace_prefix",
+    "batch_nodes": 10000,
+    "trace_horizon": 48
+  },
+  "pruning": {
+    "trace": true,
+    "schur": true,
+    "perron": true,
+    "mod2": true,
+    "peripheral": true,
+    "lefschetz": true,
+    "deck": true,
+    "base_coupling": false,
+    "cycle": true,
+    "trace_horizon": 192
+  },
+  "limits": {
+    "events": 1000,
+    "models": 1000000,
+    "cycle_nodes": 200000
+  }
+}

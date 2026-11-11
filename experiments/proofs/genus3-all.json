@@ -1,0 +1,30 @@
+{
+  "schema": "ttauto-proof-v1",
+  "name": "g3-all-formal-strata",
+  "surface": {
+    "kind": "closed",
+    "genus": 3
+  },
+  "strata": "all",
+  "upper": "701/500",
+  "target_polynomial": [
+    1,
+    0,
+    -1,
+    -1,
+    -1,
+    0,
+    1
+  ],
+  "source": {
+    "kind": "newton"
+  },
+  "pruning": {
+    "trace_horizon": 32
+  },
+  "limits": {
+    "events": 10000,
+    "models": 500000,
+    "base_catalog_nodes": 500000
+  }
+}

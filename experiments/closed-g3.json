@@ -1,0 +1,30 @@
+{
+  "schema": "ttauto-experiment-v1",
+  "name": "g3-H4-regular-fixed-sector",
+  "surface": {
+    "kind": "closed",
+    "genus": 3,
+    "inner_prongs": [
+      2
+    ],
+    "outer_prongs": [
+      10
+    ],
+    "foliation": "orientable"
+  },
+  "upper": "141/100",
+  "pruning": {
+    "norm": true,
+    "cycle": true,
+    "homology": true,
+    "lefschetz": true,
+    "perron": true
+  },
+  "limits": {
+    "events": 10000,
+    "state_decorations": 200000
+  },
+  "geometry": {
+    "kind": "builtin"
+  }
+}

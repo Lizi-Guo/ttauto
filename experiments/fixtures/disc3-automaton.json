@@ -1,0 +1,197 @@
+{
+  "schema": "ttauto-automaton-v1",
+  "surface": {
+    "kind": "disc",
+    "inner_prongs": [
+      1,
+      1,
+      1
+    ],
+    "outer_prongs": [
+      1
+    ],
+    "genus": 0,
+    "inner_colors": [
+      "puncture",
+      "puncture",
+      "puncture"
+    ],
+    "punctures": 3,
+    "foliation": "any"
+  },
+  "enumeration": {
+    "labelled_pairing_decorations": 9,
+    "disconnected_decorations": 3,
+    "accepted_labelled_decorations": 6,
+    "oriented_isomorphism_classes": 1,
+    "canonicalization": "rooted_oriented_polygon_walks"
+  },
+  "state_inventory_complete": true,
+  "coverage": "prescribed inner/outer type; not all types on a closed surface",
+  "states": [
+    {
+      "graph": {
+        "inner_prongs": [
+          1,
+          1,
+          1
+        ],
+        "outer_prongs": [
+          1
+        ],
+        "main_edges": 2,
+        "genus": 0,
+        "real_fans": [
+          [
+            1
+          ],
+          [
+            -1,
+            2
+          ],
+          [
+            -2
+          ]
+        ],
+        "cyclic_directions": [
+          [
+            3,
+            -3,
+            1
+          ],
+          [
+            4,
+            -4,
+            -1,
+            2
+          ],
+          [
+            5,
+            -5,
+            -2
+          ]
+        ],
+        "boundary_cycles": [
+          [
+            -5,
+            -2,
+            -1,
+            -3,
+            1,
+            -4,
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ]
+        ],
+        "connected": true,
+        "inner_colors": [
+          "puncture",
+          "puncture",
+          "puncture"
+        ]
+      },
+      "arcs": [
+        {
+          "long_edge": 2,
+          "short_edge": -1,
+          "infinitesimal_edge": -3,
+          "vertex_images": [
+            1,
+            0,
+            2
+          ],
+          "edge_images": [
+            [
+              -1
+            ],
+            [
+              1,
+              -4,
+              2
+            ],
+            [
+              4
+            ],
+            [
+              3
+            ],
+            [
+              5
+            ]
+          ],
+          "matrix": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "target": 0,
+          "face_transport": [
+            0,
+            2,
+            1,
+            3
+          ]
+        },
+        {
+          "long_edge": -1,
+          "short_edge": 2,
+          "infinitesimal_edge": 5,
+          "vertex_images": [
+            0,
+            2,
+            1
+          ],
+          "edge_images": [
+            [
+              1,
+              -4,
+              2
+            ],
+            [
+              -2
+            ],
+            [
+              3
+            ],
+            [
+              5
+            ],
+            [
+              4
+            ]
+          ],
+          "matrix": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "target": 0,
+          "face_transport": [
+            0,
+            1,
+            3,
+            2
+          ]
+        }
+      ]
+    }
+  ]
+}

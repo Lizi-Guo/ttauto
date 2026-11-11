@@ -1,0 +1,192 @@
+{
+  "schema": "ttauto-proof-v1",
+  "name": "g3-bulk21-homology-lower",
+  "surface": {
+    "kind": "closed",
+    "genus": 3
+  },
+  "strata": [
+    {
+      "type": "H",
+      "orders": [
+        4
+      ]
+    },
+    {
+      "type": "H",
+      "orders": [
+        3,
+        1
+      ]
+    },
+    {
+      "type": "H",
+      "orders": [
+        2,
+        2
+      ]
+    },
+    {
+      "type": "H",
+      "orders": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "type": "H",
+      "orders": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        8
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        6,
+        2
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        4,
+        4
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        4,
+        2,
+        2
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        7,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        6,
+        1,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        5,
+        3
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        5,
+        2,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        4,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        3,
+        3,
+        2
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        3,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        2,
+        2,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        3,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "type": "Q",
+      "orders": [
+        5,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "upper": "701/500",
+  "target_polynomial": [
+    1,
+    0,
+    -1,
+    -1,
+    -1,
+    0,
+    1
+  ],
+  "source": {
+    "kind": "newton"
+  },
+  "pruning": {
+    "trace_horizon": 32
+  }
+}

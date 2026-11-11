@@ -1,0 +1,87 @@
+{
+  "upstream": {
+    "url": "https://github.com/jeanluct/ttauto",
+    "commit": "ca1b2ed030946cd1ad5dd3abe05a85a52f59b0e7",
+    "distribution": "in-tree-source; provenance only, never fetched",
+    "source_paths": [
+      "include/traintracks",
+      "include/ttauto",
+      "lib/traintracks"
+    ]
+  },
+  "imported_exact_modules": {
+    "python/ttauto_cert/__init__.py": {
+      "source": "ttauto-master/python/ttauto_cert/__init__.py",
+      "sha256": "c715356b9f85c0278bed2ae7a0e273d62b808b64357925f0d2f6c18371ee5214"
+    },
+    "python/ttauto_cert/exact_math.py": {
+      "source": "ttauto-master/python/ttauto_cert/exact_math.py",
+      "sha256": "b6bcb0a13571df4654cc49a81af8501eee5681a6dca89ac0d96ae97462df17a7"
+    },
+    "python/ttauto_cert/exact_perron.py": {
+      "source": "ttauto-master/python/ttauto_cert/exact_perron.py",
+      "sha256": "c7c0c42828afa7d4d0f3be94ee48a4b148c6f03df2a42821c968455c0a1bdf34"
+    },
+    "python/ttauto_cert/cycle_pruning.py": {
+      "source": "ttauto-master/python/ttauto_cert/cycle_pruning.py",
+      "sha256": "f48f90fae655e5ceee4b30ad9297953b1ac385ac560f1792cad49958f2407707"
+    },
+    "python/ttauto_cert/hyperelliptic_mod2.py": {
+      "source": "ttauto-master/python/ttauto_cert/hyperelliptic_mod2.py",
+      "sha256": "405bfd90fb8ece729e32858c364b2e39d7bb757c937099f1641602726fc9731c"
+    },
+    "python/ttauto_cert/lefschetz.py": {
+      "source": "ttauto-master/python/ttauto_cert/lefschetz.py",
+      "sha256": "31044a89bd6e33791ec4e5a92e91ab20bce5b5f390986c1f80f5e131084f76b2"
+    },
+    "python/ttauto_cert/perron_obstructions.py": {
+      "source": "ttauto-master/python/ttauto_cert/perron_obstructions.py",
+      "sha256": "842cc4c6e1967fe87a66e6ac8254a20920b9a2b702bf64d8cf1438640d6065fb"
+    },
+    "python/ttauto_cert/ribbon_verify.py": {
+      "source": "ttauto-master/python/ttauto_cert/ribbon_verify.py",
+      "sha256": "a578fe5674436a4b0763b7f7ab1df3ec84599729a19fbf0fc41935b10f18dd85"
+    },
+    "python/ttauto_cert/standard_maps.py": {
+      "source": "ttauto-master/python/ttauto_cert/standard_maps.py",
+      "sha256": "65d238d2ee7cb505df0cb8076beb75d123e31c685d22d955fb44767b699ee717",
+      "local_changes": "Removed the external classifier export function."
+    },
+    "python/ttauto_cert/topology_certificate.py": {
+      "source": "ttauto-master/python/ttauto_cert/topology_certificate.py",
+      "sha256": "8691810ad91a52c8ff4aca2f3b5ef1844a6f483a85bcecb6e7a84e0799076249"
+    },
+    "python/ttauto_cert/floral_pruning.py": {
+      "source": "ttauto-master/python/ttauto_cert/floral_pruning.py",
+      "sha256": "ecb63f5e7d6711c026129c1af67555b728ae96d9bea8338a3e7b01102e38e59f"
+    },
+    "python/ttauto_cert/tree_types.py": {
+      "source": "ttauto-master/python/ttauto_cert/tree_types.py",
+      "sha256": "bb59b6ec00726a1d7ec24d027076b636aef518b158a401642f6bdd233f9fe537"
+    },
+    "python/ttauto_cert/streaming_tree_types.py": {
+      "source": "ttauto-master/python/ttauto_cert/streaming_tree_types.py",
+      "sha256": "a60cb38c57b8aed15d614b8a258fca735d35e89706a8a90a7c2b35dbee97d9a1"
+    },
+    "python/ttauto_cert/paired_factorization.py": {
+      "source": "ttauto-master/python/ttauto_cert/paired_factorization.py",
+      "sha256": "0250f4f99518a9108ad1bf3ed1af413ad2e54d39687a977e16ef75d48e2d96e2"
+    },
+    "python/ttauto_cert/paired_folds.py": {
+      "source": "ttauto-master/python/ttauto_cert/paired_folds.py",
+      "sha256": "cd4d2ba6fc8119fd4a710c343b50a98327d0e14187f60abe0fc5bb46b4adb25f"
+    },
+    "python/ttauto_cert/single_cusp.py": {
+      "source": "ttauto-master/python/ttauto_cert/single_cusp.py",
+      "sha256": "6043c479e2987bb52af3b7e15c88773ec926e7c4ac769f48a65d78682ab4a441"
+    },
+    "python/ttauto_cert/execution.py": {
+      "source": "ttauto-master/python/ttauto_cert/execution.py",
+      "sha256": "ae9a6c4f2ae7495bc88c08ad6021adc8f80ea74f5808ef16225764c4c107f1c5"
+    }
+  },
+  "ribbon_modules": "Adapted from project closed-surface state, automaton and ordered-band audit modules dated 2026-09-25 and 2026-09-29; historical command-line entrypoints removed.",
+  "local_changes": {
+    "0.1.2": "Removed native classification client and source. Geometry is computed by project-owned certificate routines; unsupported cases remain unresolved."
+  }
+}

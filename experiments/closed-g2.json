@@ -1,0 +1,26 @@
+{
+  "schema": "ttauto-experiment-v1",
+  "name": "g2-H2-regular-fixed-sector",
+  "surface": {
+    "kind": "closed",
+    "genus": 2,
+    "inner_prongs": [
+      2
+    ],
+    "outer_prongs": [
+      6
+    ],
+    "foliation": "orientable"
+  },
+  "upper": "7/4",
+  "pruning": {
+    "norm": true,
+    "cycle": true,
+    "homology": true,
+    "lefschetz": true,
+    "perron": true
+  },
+  "geometry": {
+    "kind": "builtin"
+  }
+}

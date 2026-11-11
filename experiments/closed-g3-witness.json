@@ -1,0 +1,36 @@
+{
+  "schema": "ttauto-experiment-v1",
+  "name": "g3-Q8-witness-subgraph",
+  "surface": {
+    "kind": "closed",
+    "genus": 3,
+    "inner_prongs": [
+      2
+    ],
+    "outer_prongs": [
+      10
+    ],
+    "inner_colors": [
+      "filled"
+    ],
+    "foliation": "nonorientable"
+  },
+  "upper": "21/10",
+  "source": {
+    "kind": "automaton",
+    "path": "../python/tests/fixtures/g3_q8_witness.json"
+  },
+  "pruning": {
+    "norm": true,
+    "cycle": true,
+    "homology": true,
+    "lefschetz": true,
+    "perron": true
+  },
+  "limits": {
+    "depth": 5
+  },
+  "geometry": {
+    "kind": "builtin"
+  }
+}

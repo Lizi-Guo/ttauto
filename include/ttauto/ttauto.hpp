@@ -1206,10 +1206,8 @@ inline void ttauto<TrTr>::add_current_path(pAlist& l)
       // A new dilatation: add it to the list.
       pAclass<TrTr> newpA(charpoly,lambda,max_paths_save);
       newpA.add_path(p,TM);
-      // Use pAit as a hint: for fastest results, it should point to
-      // the element before the one to be inserted.  So decrement
-      // pAit, unless it's already at the end.
-      if (pAit != l.end()) --pAit;
+      // lower_bound is already the insertion hint (the element AFTER the
+      // new key). Decrementing it could decrement begin(), which is undefined.
       l.insert(pAit,std::pair<Poly,pAclass<TrTr> >(charpoly,newpA));
     }
   else

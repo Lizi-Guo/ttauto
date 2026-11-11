@@ -1,0 +1,19 @@
+{
+  "upstream": {
+    "url": "https://github.com/jeanluct/ttauto",
+    "commit": "ca1b2ed030946cd1ad5dd3abe05a85a52f59b0e7",
+    "distribution": "in-tree-source; provenance only, never fetched",
+    "source_paths": [
+      "include/traintracks",
+      "include/ttauto",
+      "lib/traintracks"
+    ]
+  },
+  "jlt": {
+    "url": "https://github.com/jeanluct/jlt",
+    "commit": "ea4e9558f46dd12487be7e3e85d6a3a4eaed8895",
+    "distribution": "in-tree-source; no submodule",
+    "source_path": "extern/jlt",
+    "local_changes": "CSparse index pointers use deduced types on LLP64; C-allocated objects use cs_spfree/cs_dfree. Previously generated compatibility overlay is now applied directly to the vendored header. Matrix compound addition/subtraction use separate mutable and const iterator declarations."
+  }
+}

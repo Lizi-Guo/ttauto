@@ -413,7 +413,9 @@ jlt::vector<traintrack> build_traintrack_list(const int N, const int N2)
   std::list<intVec> sdata_list;
 
   // The maximum prong order is N-1.
-  intVec sdata(N-1);
+  // Slot 2 is the enumeration sentinel even for N=3, where no interior
+  // singularity is possible. Keep that slot allocated in the base case.
+  intVec sdata(std::max(3,N-1));
   sdata[0] = N;    // 1-prongs
   sdata[1] = N2;   // 2-prongs
   sdata[2] = -1;
@@ -421,7 +423,7 @@ jlt::vector<traintrack> build_traintrack_list(const int N, const int N2)
   // The maximum possible number of singularities of a given
   // prongness.  Obtained from Euler-Poincare formula by setting
   // Nsep=1 (number of boundary separatrices).
-  intVec sdatamax(N-1);
+  intVec sdatamax(std::max(3,N-1));
   sdatamax[0] = N;    // 1-prongs
   sdatamax[1] = N2;   // 2-prongs
   for (int p = 2; p < N-1; ++p) sdatamax[p] = (N-3)/((p+1)-2);

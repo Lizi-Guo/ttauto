@@ -1,0 +1,47 @@
+{
+  "schema": "ttauto-experiment-v1",
+  "name": "D18-one-prong-no-interior-zero",
+  "surface": {
+    "kind": "disc",
+    "punctures": 18,
+    "inner_prongs": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "outer_prongs": [
+      16
+    ]
+  },
+  "upper": "233/200",
+  "pruning": {
+    "norm": true,
+    "cycle": true,
+    "homology": true,
+    "mod2": true,
+    "lefschetz": true,
+    "perron": true
+  },
+  "geometry": {
+    "kind": "builtin"
+  },
+  "limits": {
+    "events": 10000,
+    "state_decorations": 10000
+  }
+}

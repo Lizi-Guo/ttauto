@@ -1,0 +1,34 @@
+{
+  "schema": "ttauto-experiment-v1",
+  "name": "D4-one-prong-no-interior-zero",
+  "surface": {
+    "kind": "disc",
+    "punctures": 4,
+    "inner_prongs": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "outer_prongs": [
+      2
+    ]
+  },
+  "upper": "5/2",
+  "pruning": {
+    "norm": true,
+    "cycle": true,
+    "homology": true,
+    "mod2": true,
+    "lefschetz": true,
+    "perron": true
+  },
+  "geometry": {
+    "kind": "builtin"
+  },
+  "source": {
+    "kind": "native",
+    "executable": "../build/bin/ttauto_pipeline_export",
+    "stratum_index": 0
+  }
+}

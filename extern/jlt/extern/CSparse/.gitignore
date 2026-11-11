@@ -1,0 +1,21 @@
+# Compiled object files and libraries
+*.o
+*.a
+
+# Test coverage executables and scripts
+Tcov/covall
+Tcov/cover
+Tcov/covs
+Tcov/cs_demo1
+Tcov/cs_demo2
+Tcov/cs_demo3
+Tcov/cstcov_test
+Tcov/gcovs
+
+# Coverage data files
+Tcov/*.gcov
+Tcov/*.gcda
+Tcov/*.gcno
+
+# Build artifacts
+*.mex*

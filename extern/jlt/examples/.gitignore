@@ -1,0 +1,15 @@
+csparse_test
+display_task_test
+eigensystem_test
+finitediff_test
+math_test
+mathvector_test
+matlab_mathematica_test
+polynomial_test
+qrdecomp_test
+stlio_demo
+svdecomp_test
+tictoc_test
+vcs_test
+freeword_test
+freeauto_test

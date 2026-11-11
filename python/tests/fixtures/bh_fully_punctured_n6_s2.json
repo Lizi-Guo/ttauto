@@ -1,0 +1,378 @@
+{
+  "schema": 1,
+  "backend": "braidlab-trains-313638c",
+  "type": "pseudo_anosov",
+  "growth_estimate": 1.8832035059407994,
+  "tolerance": 1e-10,
+  "punctures": 7,
+  "singularity_orbits": [
+    {
+      "singularities": [
+        {
+          "prongs": 4,
+          "interior": false,
+          "location": [
+            -5,
+            -4,
+            -3,
+            -2
+          ]
+        }
+      ]
+    },
+    {
+      "singularities": [
+        {
+          "prongs": 2,
+          "interior": false,
+          "location": [
+            -16,
+            5,
+            -11,
+            1,
+            11,
+            2,
+            12,
+            6,
+            -12,
+            13,
+            7,
+            -13,
+            3,
+            14,
+            8,
+            -14,
+            4,
+            15,
+            9,
+            -15,
+            16,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "singularities": [
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -10
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -6
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -9
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -1
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -7
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -8
+          ]
+        }
+      ]
+    }
+  ],
+  "final_graph": {
+    "vertices": [
+      {
+        "label": 1,
+        "image": 7,
+        "cyclic_directions": [
+          1,
+          -1,
+          11
+        ]
+      },
+      {
+        "label": 2,
+        "image": 3,
+        "cyclic_directions": [
+          2,
+          -5,
+          -11
+        ]
+      },
+      {
+        "label": 3,
+        "image": 4,
+        "cyclic_directions": [
+          3,
+          -2,
+          12,
+          13
+        ]
+      },
+      {
+        "label": 4,
+        "image": 5,
+        "cyclic_directions": [
+          4,
+          -3,
+          14
+        ]
+      },
+      {
+        "label": 5,
+        "image": 2,
+        "cyclic_directions": [
+          5,
+          -4,
+          15,
+          16
+        ]
+      },
+      {
+        "label": 6,
+        "image": 9,
+        "cyclic_directions": [
+          6,
+          -6,
+          -12
+        ]
+      },
+      {
+        "label": 7,
+        "image": 8,
+        "cyclic_directions": [
+          7,
+          -7,
+          -13
+        ]
+      },
+      {
+        "label": 8,
+        "image": 10,
+        "cyclic_directions": [
+          8,
+          -8,
+          -14
+        ]
+      },
+      {
+        "label": 9,
+        "image": 1,
+        "cyclic_directions": [
+          9,
+          -9,
+          -15
+        ]
+      },
+      {
+        "label": 10,
+        "image": 6,
+        "cyclic_directions": [
+          10,
+          -10,
+          -16
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "label": 1,
+        "start": 1,
+        "end": 1,
+        "type": 1,
+        "puncture": 1,
+        "image": [
+          7
+        ]
+      },
+      {
+        "label": 2,
+        "start": 2,
+        "end": 3,
+        "type": 1,
+        "puncture": 2,
+        "image": [
+          3
+        ]
+      },
+      {
+        "label": 3,
+        "start": 3,
+        "end": 4,
+        "type": 1,
+        "puncture": 2,
+        "image": [
+          4
+        ]
+      },
+      {
+        "label": 4,
+        "start": 4,
+        "end": 5,
+        "type": 1,
+        "puncture": 2,
+        "image": [
+          5
+        ]
+      },
+      {
+        "label": 5,
+        "start": 5,
+        "end": 2,
+        "type": 1,
+        "puncture": 2,
+        "image": [
+          2
+        ]
+      },
+      {
+        "label": 6,
+        "start": 6,
+        "end": 6,
+        "type": 1,
+        "puncture": 3,
+        "image": [
+          9
+        ]
+      },
+      {
+        "label": 7,
+        "start": 7,
+        "end": 7,
+        "type": 1,
+        "puncture": 4,
+        "image": [
+          8
+        ]
+      },
+      {
+        "label": 8,
+        "start": 8,
+        "end": 8,
+        "type": 1,
+        "puncture": 5,
+        "image": [
+          10
+        ]
+      },
+      {
+        "label": 9,
+        "start": 9,
+        "end": 9,
+        "type": 1,
+        "puncture": 6,
+        "image": [
+          1
+        ]
+      },
+      {
+        "label": 10,
+        "start": 10,
+        "end": 10,
+        "type": 1,
+        "puncture": 7,
+        "image": [
+          6
+        ]
+      },
+      {
+        "label": 11,
+        "start": 1,
+        "end": 2,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -13
+        ]
+      },
+      {
+        "label": 12,
+        "start": 3,
+        "end": 6,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          14,
+          8,
+          -14,
+          4,
+          15
+        ]
+      },
+      {
+        "label": 13,
+        "start": 3,
+        "end": 7,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          14
+        ]
+      },
+      {
+        "label": 14,
+        "start": 4,
+        "end": 8,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          16
+        ]
+      },
+      {
+        "label": 15,
+        "start": 5,
+        "end": 9,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -11,
+          1,
+          11,
+          2,
+          12,
+          6,
+          -12,
+          -2,
+          -11
+        ]
+      },
+      {
+        "label": 16,
+        "start": 5,
+        "end": 10,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -11,
+          1,
+          11,
+          2,
+          12
+        ]
+      }
+    ]
+  },
+  "report": "Graph on surface with 7 peripheral loops:\nVertex number 1 with image vertex 7:\nEdges at vertex are: 1 -1 11 \n\nVertex number 2 with image vertex 3:\nEdges at vertex are: 2 -5 -11 \n\nVertex number 3 with image vertex 4:\nEdges at vertex are: 3 -2 12 13 \n\nVertex number 4 with image vertex 5:\nEdges at vertex are: 4 -3 14 \n\nVertex number 5 with image vertex 2:\nEdges at vertex are: 5 -4 15 16 \n\nVertex number 6 with image vertex 9:\nEdges at vertex are: 6 -6 -12 \n\nVertex number 7 with image vertex 8:\nEdges at vertex are: 7 -7 -13 \n\nVertex number 8 with image vertex 10:\nEdges at vertex are: 8 -8 -14 \n\nVertex number 9 with image vertex 1:\nEdges at vertex are: 9 -9 -15 \n\nVertex number 10 with image vertex 6:\nEdges at vertex are: 10 -10 -16 \n\nEdge number 1 from vertex 1 to vertex 1:\nType: Peripheral about puncture number 1\nImage is: 7 \n\nEdge number 2 from vertex 2 to vertex 3:\nType: Peripheral about puncture number 2\nImage is: 3 \n\nEdge number 3 from vertex 3 to vertex 4:\nType: Peripheral about puncture number 2\nImage is: 4 \n\nEdge number 4 from vertex 4 to vertex 5:\nType: Peripheral about puncture number 2\nImage is: 5 \n\nEdge number 5 from vertex 5 to vertex 2:\nType: Peripheral about puncture number 2\nImage is: 2 \n\nEdge number 6 from vertex 6 to vertex 6:\nType: Peripheral about puncture number 3\nImage is: 9 \n\nEdge number 7 from vertex 7 to vertex 7:\nType: Peripheral about puncture number 4\nImage is: 8 \n\nEdge number 8 from vertex 8 to vertex 8:\nType: Peripheral about puncture number 5\nImage is: 10 \n\nEdge number 9 from vertex 9 to vertex 9:\nType: Peripheral about puncture number 6\nImage is: 1 \n\nEdge number 10 from vertex 10 to vertex 10:\nType: Peripheral about puncture number 7\nImage is: 6 \n\nEdge number 11 from vertex 1 to vertex 2:\nType: Main\nImage is: -13 \n\nEdge number 12 from vertex 3 to vertex 6:\nType: Main\nImage is: 14 8 -14 4 15 \n\nEdge number 13 from vertex 3 to vertex 7:\nType: Main\nImage is: 14 \n\nEdge number 14 from vertex 4 to vertex 8:\nType: Main\nImage is: 16 \n\nEdge number 15 from vertex 5 to vertex 9:\nType: Main\nImage is: -11 1 11 2 12 6 -12 -2 -11 \n\nEdge number 16 from vertex 5 to vertex 10:\nType: Main\nImage is: -11 1 11 2 12 \n\nPseudo-Anosov Isotopy class\nVertex 1:\nGates are: {-1}, {11}, {1}\nInfinitesimal edges join 1 to 11, -1 to 11\nVertex 2:\nGates are: {-5}, {-11}, {2}\nInfinitesimal edges join -11 to 2, -11 to -5\nVertex 3:\nGates are: {-2}, {12, 13}, {3}\nInfinitesimal edges join 3 to 12, -2 to 12\nVertex 4:\nGates are: {-3}, {14}, {4}\nInfinitesimal edges join 4 to 14, -3 to 14\nVertex 5:\nGates are: {-4}, {15, 16}, {5}\nInfinitesimal edges join 5 to 15, -4 to 15\nVertex 6:\nGates are: {-6}, {-12}, {6}\nInfinitesimal edges join -12 to 6, -12 to -6\nVertex 7:\nGates are: {-7}, {-13}, {7}\nInfinitesimal edges join -13 to 7, -13 to -7\nVertex 8:\nGates are: {-8}, {-14}, {8}\nInfinitesimal edges join -14 to 8, -14 to -8\nVertex 9:\nGates are: {-9}, {-15}, {9}\nInfinitesimal edges join -15 to 9, -15 to -9\nVertex 10:\nGates are: {-10}, {-16}, {10}\nInfinitesimal edges join -16 to 10, -16 to -10\n\n1 4-pronged singularity\n[-5 -4 -3 -2]\n\n1 2-pronged singularity\n[-16 5 -11 1 11 2 12 6 -12 13 7 -13 3 14 8 -14 4 15 9 -15 16 10]\n\n6 1-pronged singularities\nPeriod 6 orbit:   [-10] -> [-6] -> [-9] -> [-1] -> [-7] -> [-8]\n",
+  "messages": ""
+}

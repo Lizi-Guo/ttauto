@@ -1,0 +1,28 @@
+{
+  "schema": "ttauto-experiment-v1",
+  "name": "D3-one-prong-no-interior-zero",
+  "surface": {
+    "kind": "disc",
+    "punctures": 3,
+    "inner_prongs": [
+      1,
+      1,
+      1
+    ],
+    "outer_prongs": [
+      1
+    ]
+  },
+  "upper": "8/3",
+  "pruning": {
+    "norm": true,
+    "cycle": true,
+    "homology": true,
+    "mod2": true,
+    "lefschetz": true,
+    "perron": true
+  },
+  "geometry": {
+    "kind": "audit"
+  }
+}

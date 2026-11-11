@@ -1,0 +1,169 @@
+{
+  "version": "0.2.0",
+  "date": "2026-11-10",
+  "validation": {
+    "cmake_build": "passed",
+    "ctest_targets_passed": 20,
+    "python_tests_passed": 115,
+    "python_suite_rerun_after_final_test_addition": true,
+    "remote_ci_run": false,
+    "full_large_disc_campaigns_rerun": false
+  },
+  "runs": [
+    {
+      "name": "proof-g3-bulk21-0.2.0",
+      "status": "exhausted",
+      "candidate_kind": "homological_spectrum",
+      "strata": 21,
+      "counts": {
+        "events": 25062,
+        "prefixes": 13347,
+        "candidates": 11715,
+        "stages": {
+          "polynomial_trace": {
+            "tested": 11715,
+            "passed": 487,
+            "rejected": 11228,
+            "skipped": 0
+          },
+          "polynomial_schur": {
+            "tested": 487,
+            "passed": 441,
+            "rejected": 46,
+            "skipped": 0
+          },
+          "polynomial_domain": {
+            "tested": 441,
+            "passed": 28,
+            "rejected": 413,
+            "skipped": 0
+          },
+          "polynomial_perron": {
+            "tested": 28,
+            "passed": 17,
+            "rejected": 11,
+            "skipped": 0
+          },
+          "stratum_mod2": {
+            "tested": 46,
+            "passed": 0,
+            "rejected": 0,
+            "skipped": 46
+          },
+          "stratum_peripheral": {
+            "tested": 46,
+            "passed": 0,
+            "rejected": 0,
+            "skipped": 46
+          },
+          "stratum_lefschetz": {
+            "tested": 46,
+            "passed": 1,
+            "rejected": 45,
+            "skipped": 0
+          },
+          "stratum_deck": {
+            "tested": 1,
+            "passed": 0,
+            "rejected": 0,
+            "skipped": 1
+          },
+          "stratum_base_coupling": {
+            "tested": 1,
+            "passed": 0,
+            "rejected": 1,
+            "skipped": 0
+          }
+        },
+        "stratum_candidates": 46,
+        "unresolved_stratum_candidates": 0
+      },
+      "candidate_superset_complete": true,
+      "lower_bound_proved": true,
+      "upper_bound_attained": false,
+      "minimum_proved": false,
+      "full_search_replay_verified": true,
+      "python_sources_sha256": "ca08a293eb5d05a1e3de4a8cd60d093c0a351a277f72fcca0158823be5ca852f"
+    },
+    {
+      "name": "proof-D12-preview-0.2.0",
+      "status": "paused_budget",
+      "candidate_kind": "homological_spectrum",
+      "strata": 284,
+      "counts": {
+        "events": 50,
+        "prefixes": 3,
+        "candidates": 47,
+        "native_statistics": {
+          "nodes": 485,
+          "parity_admissible_completions": 375,
+          "trace_pruned": 300,
+          "retained": 75
+        },
+        "stages": {
+          "polynomial_trace": {
+            "tested": 47,
+            "passed": 47,
+            "rejected": 0,
+            "skipped": 0
+          },
+          "polynomial_schur": {
+            "tested": 47,
+            "passed": 47,
+            "rejected": 0,
+            "skipped": 0
+          },
+          "polynomial_domain": {
+            "tested": 47,
+            "passed": 0,
+            "rejected": 47,
+            "skipped": 0
+          }
+        }
+      },
+      "candidate_superset_complete": false,
+      "lower_bound_proved": false,
+      "upper_bound_attained": false,
+      "minimum_proved": false,
+      "full_search_replay_verified": true,
+      "python_sources_sha256": "ca08a293eb5d05a1e3de4a8cd60d093c0a351a277f72fcca0158823be5ca852f"
+    },
+    {
+      "name": "proof-D3-minimum-0.2.0",
+      "status": "exhausted",
+      "candidate_kind": "homological_spectrum",
+      "strata": 1,
+      "counts": {
+        "events": 14,
+        "prefixes": 7,
+        "candidates": 7,
+        "stages": {
+          "polynomial_trace": {
+            "tested": 7,
+            "passed": 7,
+            "rejected": 0,
+            "skipped": 0
+          },
+          "polynomial_schur": {
+            "tested": 7,
+            "passed": 7,
+            "rejected": 0,
+            "skipped": 0
+          },
+          "polynomial_domain": {
+            "tested": 7,
+            "passed": 0,
+            "rejected": 7,
+            "skipped": 0
+          }
+        }
+      },
+      "candidate_superset_complete": true,
+      "lower_bound_proved": true,
+      "upper_bound_attained": true,
+      "minimum_proved": true,
+      "full_search_replay_verified": true,
+      "python_sources_sha256": "ca08a293eb5d05a1e3de4a8cd60d093c0a351a277f72fcca0158823be5ca852f"
+    }
+  ]
+}

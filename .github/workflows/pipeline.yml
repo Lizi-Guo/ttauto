@@ -1,0 +1,20 @@
+name: pipeline
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build --parallel 2
+      - run: ctest --test-dir build --output-on-failure
+      - run: ttauto run experiments/disc3.json --output runs/disc3
+      - run: ttauto verify runs/disc3 --replay-search
+      - run: ttauto run experiments/proofs/disc3-lower.json --output runs/disc3-lower
+      - run: ttauto verify runs/disc3-lower --replay-search
+      - run: ttauto run experiments/proofs/genus3-bulk21.json --output runs/genus3-bulk21
+      - run: ttauto verify runs/genus3-bulk21 --replay-search

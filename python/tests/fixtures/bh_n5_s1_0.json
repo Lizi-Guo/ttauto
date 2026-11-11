@@ -1,0 +1,256 @@
+{
+  "schema": 1,
+  "backend": "braidlab-trains-313638c",
+  "type": "pseudo_anosov",
+  "growth_estimate": 1.7220838057473677,
+  "tolerance": 1e-10,
+  "punctures": 5,
+  "singularity_orbits": [
+    {
+      "singularities": [
+        {
+          "prongs": 3,
+          "interior": true,
+          "location": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "singularities": [
+        {
+          "prongs": 2,
+          "interior": false,
+          "location": [
+            -10,
+            -6,
+            1,
+            6,
+            7,
+            2,
+            -7,
+            8,
+            3,
+            -8,
+            9,
+            4,
+            -9,
+            10,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "singularities": [
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -5
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -3
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -1
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -4
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -2
+          ]
+        }
+      ]
+    }
+  ],
+  "final_graph": {
+    "vertices": [
+      {
+        "label": 1,
+        "image": 5,
+        "cyclic_directions": [
+          1,
+          -1,
+          6
+        ]
+      },
+      {
+        "label": 2,
+        "image": 2,
+        "cyclic_directions": [
+          7,
+          8,
+          9,
+          10,
+          -6
+        ]
+      },
+      {
+        "label": 3,
+        "image": 6,
+        "cyclic_directions": [
+          2,
+          -2,
+          -7
+        ]
+      },
+      {
+        "label": 4,
+        "image": 1,
+        "cyclic_directions": [
+          3,
+          -3,
+          -8
+        ]
+      },
+      {
+        "label": 5,
+        "image": 3,
+        "cyclic_directions": [
+          4,
+          -4,
+          -9
+        ]
+      },
+      {
+        "label": 6,
+        "image": 4,
+        "cyclic_directions": [
+          5,
+          -5,
+          -10
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "label": 1,
+        "start": 1,
+        "end": 1,
+        "type": 1,
+        "puncture": 1,
+        "image": [
+          4
+        ]
+      },
+      {
+        "label": 2,
+        "start": 3,
+        "end": 3,
+        "type": 1,
+        "puncture": 2,
+        "image": [
+          5
+        ]
+      },
+      {
+        "label": 3,
+        "start": 4,
+        "end": 4,
+        "type": 1,
+        "puncture": 3,
+        "image": [
+          1
+        ]
+      },
+      {
+        "label": 4,
+        "start": 5,
+        "end": 5,
+        "type": 1,
+        "puncture": 4,
+        "image": [
+          2
+        ]
+      },
+      {
+        "label": 5,
+        "start": 6,
+        "end": 6,
+        "type": 1,
+        "puncture": 5,
+        "image": [
+          3
+        ]
+      },
+      {
+        "label": 6,
+        "start": 1,
+        "end": 2,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -9
+        ]
+      },
+      {
+        "label": 7,
+        "start": 2,
+        "end": 3,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -6,
+          -1,
+          6,
+          10
+        ]
+      },
+      {
+        "label": 8,
+        "start": 2,
+        "end": 4,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -6,
+          -1,
+          6,
+          10,
+          -5,
+          -10,
+          -6
+        ]
+      },
+      {
+        "label": 9,
+        "start": 2,
+        "end": 5,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          7
+        ]
+      },
+      {
+        "label": 10,
+        "start": 2,
+        "end": 6,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          8
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "backend": "braidlab-trains-313638c",
+  "type": "pseudo_anosov",
+  "growth_estimate": 2.618033988749895,
+  "tolerance": 1e-10,
+  "punctures": 3,
+  "singularity_orbits": [
+    {
+      "singularities": [
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -5,
+            2,
+            -4,
+            1,
+            4,
+            5,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "singularities": [
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -3
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -1
+          ]
+        },
+        {
+          "prongs": 1,
+          "interior": false,
+          "location": [
+            -2
+          ]
+        }
+      ]
+    }
+  ],
+  "final_graph": {
+    "vertices": [
+      {
+        "label": 1,
+        "image": 2,
+        "cyclic_directions": [
+          1,
+          -1,
+          4
+        ]
+      },
+      {
+        "label": 2,
+        "image": 3,
+        "cyclic_directions": [
+          2,
+          -2,
+          -4,
+          5
+        ]
+      },
+      {
+        "label": 3,
+        "image": 1,
+        "cyclic_directions": [
+          3,
+          -3,
+          -5
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "label": 1,
+        "start": 1,
+        "end": 1,
+        "type": 1,
+        "puncture": 1,
+        "image": [
+          2
+        ]
+      },
+      {
+        "label": 2,
+        "start": 2,
+        "end": 2,
+        "type": 1,
+        "puncture": 2,
+        "image": [
+          3
+        ]
+      },
+      {
+        "label": 3,
+        "start": 3,
+        "end": 3,
+        "type": 1,
+        "puncture": 3,
+        "image": [
+          1
+        ]
+      },
+      {
+        "label": 4,
+        "start": 1,
+        "end": 2,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -4,
+          -1,
+          4,
+          -2,
+          5
+        ]
+      },
+      {
+        "label": 5,
+        "start": 2,
+        "end": 3,
+        "type": 0,
+        "puncture": 0,
+        "image": [
+          -5,
+          2,
+          -4
+        ]
+      }
+    ]
+  }
+}

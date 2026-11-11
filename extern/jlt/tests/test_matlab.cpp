@@ -1,0 +1,589 @@
+//
+// Copyright (c) 2004-2026 Jean-Luc Thiffeault <jeanluc@mailaps.org>
+//
+// See the file LICENSE for copying permission.
+//
+
+#include "catch.hpp"
+#include <sstream>
+#include "../jlt/matlab.hpp"
+#include "../jlt/matrix.hpp"
+#include "../jlt/vector.hpp"
+
+using namespace jlt;
+
+TEST_CASE("printMatlabForm for double - basic output", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Double without name") {
+    printMatlabForm(oss, 3.14159, "");
+    REQUIRE(oss.str() == "3.14159;\n");
+  }
+
+  SECTION("Double with name") {
+    printMatlabForm(oss, 3.14159, "pi");
+    REQUIRE(oss.str() == "pi = 3.14159;\n");
+  }
+
+  SECTION("Double with name and description") {
+    printMatlabForm(oss, 3.14159, "pi", "The ratio of a circle's circumference to its diameter");
+    std::string expected = "pi_descr = 'The ratio of a circle\'s circumference to its diameter';\n"
+                           "pi = 3.14159;\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Double without name but with description") {
+    printMatlabForm(oss, 3.14159, "", "This is a value");
+    std::string expected = "% This is a value\n"
+                           "3.14159;\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Integer value") {
+    printMatlabForm(oss, 42.0, "answer");
+    REQUIRE(oss.str() == "answer = 42;\n");
+  }
+
+  SECTION("Negative value") {
+    printMatlabForm(oss, -5.5, "neg");
+    REQUIRE(oss.str() == "neg = -5.5;\n");
+  }
+
+  SECTION("Zero value") {
+    printMatlabForm(oss, 0.0, "zero");
+    REQUIRE(oss.str() == "zero = 0;\n");
+  }
+}
+
+TEST_CASE("printMatlabForm for double - overload format", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Old format with name first") {
+    // Overload: printMatlabForm(strm, name, var, description)
+    printMatlabForm(oss, "pi", 3.14159);
+    REQUIRE(oss.str() == "pi = 3.14159;\n");
+  }
+
+  SECTION("Old format with description") {
+    printMatlabForm(oss, "e", 2.71828, "Euler's number");
+    std::string expected = "e_descr = 'Euler\'s number';\n"
+                           "e = 2.71828;\n";
+    REQUIRE(oss.str() == expected);
+  }
+}
+
+TEST_CASE("printMatlabForm for string", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("String without name") {
+    printMatlabForm(oss, "hello world", "");
+    // Note: when name is empty, opening quote is not printed (only closing quote)
+    REQUIRE(oss.str() == "hello world';\n");
+  }
+
+  SECTION("String with name") {
+    printMatlabForm(oss, "hello world", "greeting");
+    REQUIRE(oss.str() == "greeting = 'hello world';\n");
+  }
+
+  SECTION("String with name and description") {
+    printMatlabForm(oss, "hello world", "greeting", "A friendly greeting");
+    std::string expected = "greeting_descr = 'A friendly greeting';\n"
+                           "greeting = 'hello world';\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("String with description but no name") {
+    printMatlabForm(oss, "test", "", "This is a test string");
+    // Note: when name is empty, opening quote is not printed
+    std::string expected = "% This is a test string\n"
+                           "test';\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Empty string") {
+    printMatlabForm(oss, "", "empty_str");
+    REQUIRE(oss.str() == "empty_str = '';\n");
+  }
+}
+
+TEST_CASE("printMatlabForm for std::vector", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Empty vector") {
+    std::vector<double> v;
+    printMatlabForm(oss, v, "empty_vec");
+    // Note: empty vector should print nothing currently
+    REQUIRE(oss.str().empty());
+  }
+
+  SECTION("Vector without name") {
+    std::vector<double> v = {1.0, 2.0, 3.0, 4.0, 5.0};
+    printMatlabForm(oss, v, "");
+    std::string expected = "[\n 1\n 2\n 3\n 4\n 5\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Vector with name") {
+    std::vector<double> v = {1.0, 2.0, 3.0};
+    printMatlabForm(oss, v, "x");
+    std::string expected = "x = [\n 1\n 2\n 3\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Vector with name and description") {
+    std::vector<double> v = {1.0, 2.0, 3.0};
+    printMatlabForm(oss, v, "x", "A simple vector");
+    std::string expected = "x_descr = 'A simple vector';\n"
+                           "x = [\n 1\n 2\n 3\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Vector with description but no name") {
+    std::vector<double> v = {1.0, 2.0};
+    printMatlabForm(oss, v, "", "Two values");
+    std::string expected = "% Two values\n"
+                           "[\n 1\n 2\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Single element vector") {
+    std::vector<double> v = {42.0};
+    printMatlabForm(oss, v, "single");
+    std::string expected = "single = [\n 42\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Vector with negative values") {
+    std::vector<double> v = {-1.5, 0.0, 2.5};
+    printMatlabForm(oss, v, "mixed");
+    std::string expected = "mixed = [\n -1.5\n 0\n 2.5\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+}
+
+TEST_CASE("printMatlabForm for matrix", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Empty matrix") {
+    matrix<double> m(0, 0);
+    printMatlabForm(oss, m, "empty_mat");
+    REQUIRE(oss.str() == "empty_mat = [];\n");
+  }
+
+  SECTION("1x1 matrix") {
+    matrix<double> m(1, 1);
+    m(0, 0) = 5.0;
+    printMatlabForm(oss, m, "scalar");
+    std::string expected = "scalar = [\n5\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("2x2 matrix") {
+    matrix<double> m(2, 2);
+    m(0, 0) = 1.0; m(0, 1) = 2.0;
+    m(1, 0) = 3.0; m(1, 1) = 4.0;
+    printMatlabForm(oss, m, "m22");
+    std::string expected = "m22 = [\n1 2\n3 4\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("3x2 matrix") {
+    matrix<double> m(3, 2);
+    m(0, 0) = 1.0; m(0, 1) = 2.0;
+    m(1, 0) = 3.0; m(1, 1) = 4.0;
+    m(2, 0) = 5.0; m(2, 1) = 6.0;
+    printMatlabForm(oss, m, "m32");
+    std::string expected = "m32 = [\n1 2\n3 4\n5 6\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Matrix without name") {
+    matrix<double> m(2, 2);
+    m(0, 0) = 1.0; m(0, 1) = 0.0;
+    m(1, 0) = 0.0; m(1, 1) = 1.0;
+    printMatlabForm(oss, m, "");
+    std::string expected = "[\n1 0\n0 1\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Matrix with name and description") {
+    matrix<double> m(2, 2);
+    m(0, 0) = 1.0; m(0, 1) = 2.0;
+    m(1, 0) = 3.0; m(1, 1) = 4.0;
+    printMatlabForm(oss, m, "A", "A 2x2 matrix");
+    std::string expected = "A_descr = 'A 2x2 matrix';\n"
+                           "A = [\n1 2\n3 4\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Matrix with description but no name") {
+    matrix<double> m(1, 2);
+    m(0, 0) = 1.0; m(0, 1) = 2.0;
+    printMatlabForm(oss, m, "", "Row vector");
+    std::string expected = "% Row vector\n"
+                           "[\n1 2\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+}
+
+TEST_CASE("printMatlabForm for vector<vector>", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("2D vector 2x3") {
+    std::vector<std::vector<double>> vv = {
+      {1.0, 2.0, 3.0},
+      {4.0, 5.0, 6.0}
+    };
+    printMatlabForm(oss, vv, "vv23");
+    std::string expected = "vv23 = [\n1 2 3\n4 5 6\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("2D vector with name and description") {
+    std::vector<std::vector<double>> vv = {
+      {1.0, 2.0},
+      {3.0, 4.0},
+      {5.0, 6.0}
+    };
+    printMatlabForm(oss, vv, "data", "Some data points");
+    std::string expected = "data_descr = 'Some data points';\n"
+                           "data = [\n1 2\n3 4\n5 6\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+}
+
+TEST_CASE("printMatlabForm_nodefaults for matrix", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Matrix with nodefaults - requires explicit arguments") {
+    matrix<double> m(2, 2);
+    m(0, 0) = 1.0; m(0, 1) = 2.0;
+    m(1, 0) = 3.0; m(1, 1) = 4.0;
+    jlt::detail::printMatlabForm_nodefaults<double>(oss, m, "B", "");
+    std::string expected = "B = [\n1 2\n3 4\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Matrix with nodefaults and description") {
+    matrix<double> m(2, 2);
+    m(0, 0) = 5.0; m(0, 1) = 6.0;
+    m(1, 0) = 7.0; m(1, 1) = 8.0;
+    jlt::detail::printMatlabForm_nodefaults<double>(oss, m, "C", "Another matrix");
+    std::string expected = "C_descr = 'Another matrix';\n"
+                           "C = [\n5 6\n7 8\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+}
+
+TEST_CASE("Chained printMatlabForm calls", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Multiple variables in same stream") {
+    printMatlabForm(oss, 3.14159, "pi");
+    printMatlabForm(oss, 2.71828, "e");
+    printMatlabForm(oss, "hello", "msg");
+
+    std::string expected = "pi = 3.14159;\n"
+                           "e = 2.71828;\n"
+                           "msg = 'hello';\n";
+    REQUIRE(oss.str() == expected);
+  }
+
+  SECTION("Mixed types in same stream") {
+    printMatlabForm(oss, 42.0, "scalar");
+    std::vector<double> v = {1.0, 2.0, 3.0};
+    printMatlabForm(oss, v, "vec");
+    matrix<double> m(2, 2);
+    m(0, 0) = 1.0; m(0, 1) = 0.0;
+    m(1, 0) = 0.0; m(1, 1) = 1.0;
+    printMatlabForm(oss, m, "identity");
+
+    std::string expected = "scalar = 42;\n"
+                           "vec = [\n 1\n 2\n 3\n];\n"
+                           "identity = [\n1 0\n0 1\n];\n";
+    REQUIRE(oss.str() == expected);
+  }
+}
+
+TEST_CASE("Edge cases and special values", "[matlab]") {
+  std::ostringstream oss;
+
+  SECTION("Very small number") {
+    printMatlabForm(oss, 1e-10, "tiny");
+    REQUIRE(oss.str().find("tiny = ") != std::string::npos);
+    REQUIRE(oss.str().find("e-10") != std::string::npos);
+  }
+
+  SECTION("Very large number") {
+    printMatlabForm(oss, 1e10, "huge");
+    REQUIRE(oss.str().find("huge = ") != std::string::npos);
+    // Large numbers use scientific notation (1e+10)
+    REQUIRE(oss.str().find("1e+10") != std::string::npos);
+  }
+
+  SECTION("Scientific notation") {
+    printMatlabForm(oss, 6.022e23, "avogadro");
+    REQUIRE(oss.str().find("avogadro = ") != std::string::npos);
+  }
+
+  SECTION("Special characters in string") {
+    printMatlabForm(oss, "line1\nline2", "multiline");
+    std::string result = oss.str();
+    REQUIRE(result.find("multiline = '") != std::string::npos);
+    // The newline should be preserved in the string literal
+    REQUIRE(result.find("\n") != std::string::npos);
+  }
+
+  SECTION("Special characters in description") {
+    printMatlabForm(oss, 1.0, "x", "Special chars: \t \n \" ' ");
+    std::string result = oss.str();
+    // Description should be in the output
+    REQUIRE(result.find("x_descr") != std::string::npos);
+  }
+}
+
+TEST_CASE("MatlabFile basic usage", "[matlab][matlabfile]") {
+  SECTION("Opens with automatic .m extension") {
+    MatlabFile mf("test_output");
+    REQUIRE(mf.getFilename() == "test_output.m");
+    REQUIRE(mf.isOpen());
+  }
+
+  SECTION("Explicit close") {
+    MatlabFile mf("test_close");
+    REQUIRE(mf.isOpen());
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+
+  SECTION("Double close is safe") {
+    MatlabFile mf("test_double_close");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+    // Should not throw or crash
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+}
+
+TEST_CASE("MatlabFile RAII", "[matlab][matlabfile]") {
+  SECTION("File closed by destructor") {
+    {
+      MatlabFile mf("test_raii");
+      REQUIRE(mf.isOpen());
+      printMatlabForm(mf, 42.0, "answer");
+    } // Destructor should close file automatically
+    REQUIRE(true); // Just verify no crash
+  }
+}
+
+TEST_CASE("MatlabFile write operations", "[matlab][matlabfile]") {
+  SECTION("Write double value") {
+    MatlabFile mf("test_double");
+    printMatlabForm(mf, 3.14159, "pi");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+
+  SECTION("Write string value") {
+    MatlabFile mf("test_string");
+    printMatlabForm(mf, "hello world", "greeting");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+
+  SECTION("Write vector") {
+    MatlabFile mf("test_vector");
+    std::vector<double> v = {1.0, 2.0, 3.0, 4.0, 5.0};
+    printMatlabForm(mf, v, "v");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+
+  SECTION("Write matrix") {
+    MatlabFile mf("test_matrix");
+    matrix<double> A(2, 2);
+    A(0, 0) = 1.0; A(0, 1) = 2.0;
+    A(1, 0) = 3.0; A(1, 1) = 4.0;
+    printMatlabForm(mf, A, "A");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+
+  SECTION("Write vector of vectors") {
+    MatlabFile mf("test_vv");
+    std::vector<std::vector<double>> vv = {
+      {1.0, 2.0, 3.0},
+      {4.0, 5.0, 6.0}
+    };
+    printMatlabForm(mf, vv, "data");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+
+  SECTION("Write multiple variables") {
+    MatlabFile mf("test_multiple");
+    printMatlabForm(mf, 3.14159, "pi");
+    printMatlabForm(mf, 2.71828, "e");
+    std::vector<double> v = {1.0, 2.0, 3.0};
+    printMatlabForm(mf, v, "vec");
+    mf.close();
+    REQUIRE_FALSE(mf.isOpen());
+  }
+}
+
+TEST_CASE("MatlabFile move semantics", "[matlab][matlabfile]") {
+  SECTION("Move constructor") {
+    MatlabFile mf1("test_move_ctor");
+    REQUIRE(mf1.isOpen());
+    std::string filename1 = mf1.getFilename();
+
+    MatlabFile mf2(std::move(mf1));
+    REQUIRE(mf2.isOpen());
+    REQUIRE(mf2.getFilename() == filename1);
+    REQUIRE_FALSE(mf1.isOpen());
+  }
+
+  SECTION("Move assignment") {
+    MatlabFile mf1("test_move_assign1");
+    MatlabFile mf2("test_move_assign2");
+    REQUIRE(mf1.isOpen());
+    REQUIRE(mf2.isOpen());
+
+    std::string filename1 = mf1.getFilename();
+    mf2 = std::move(mf1);
+
+    REQUIRE(mf2.isOpen());
+    REQUIRE(mf2.getFilename() == filename1);
+    REQUIRE_FALSE(mf1.isOpen());
+  }
+}
+
+TEST_CASE("MatlabFile stream formatting", "[matlab][matlabfile]") {
+  SECTION("setPrecision method works") {
+    MatlabFile mf("test_precision");
+    mf.setPrecision(3);
+    printMatlabForm(mf, 3.14159265, "pi");
+    mf.close();
+
+    // Read back and check precision
+    std::ifstream in("test_precision.m");
+    std::string line;
+    std::getline(in, line);
+    // Should have 3 decimal places: "3.14"
+    REQUIRE(line.find("3.14") != std::string::npos);
+    REQUIRE(line.find("pi = ") != std::string::npos);
+  }
+
+  SECTION("setHighPrecision method works") {
+    MatlabFile mf("test_highprec");
+    mf.setHighPrecision();
+    printMatlabForm(mf, 3.14159265358979323846, "pi");
+    mf.close();
+
+    // Read back and check high precision output
+    std::ifstream in("test_highprec.m");
+    std::string line;
+    std::getline(in, line);
+    // Should have many decimal places (16 digits precision)
+    // and scientific notation
+    REQUIRE(line.find("pi = ") != std::string::npos);
+    REQUIRE(line.length() > 25); // High precision = longer output
+  }
+
+  SECTION("setFlags method works") {
+    MatlabFile mf("test_flags");
+    mf.setPrecision(6);
+    mf.setFlags(std::ios_base::scientific);
+    printMatlabForm(mf, 1234.5678, "num");
+    mf.close();
+
+    // Read back and check scientific notation
+    std::ifstream in("test_flags.m");
+    std::string line;
+    std::getline(in, line);
+    // Should be in scientific notation
+    REQUIRE(line.find("e+") != std::string::npos);
+  }
+
+  SECTION("Formatting methods don't crash in binary mode") {
+    // These are no-ops in binary mode, but should not crash
+    MatlabFile mf("test_binary_format");
+    mf.setPrecision(16);
+    mf.setFlags(std::ios_base::fixed | std::ios_base::scientific);
+    mf.setHighPrecision();
+    printMatlabForm(mf, 3.14159, "pi");
+    REQUIRE(mf.isOpen());
+    mf.close();
+  }
+}
+
+TEST_CASE("MatlabFile stream insertion operator", "[matlab][matlabfile]") {
+  SECTION("Direct stream insertion with strings") {
+    MatlabFile mf("test_stream_insert");
+    mf << "% This is a comment\n";
+    mf << "x = 42;\n";
+    mf << "y = " << 3.14 << ";\n";
+    mf.close();
+
+    // Read back and verify
+    std::ifstream in("test_stream_insert.m");
+    std::string line1, line2, line3;
+    std::getline(in, line1);
+    std::getline(in, line2);
+    std::getline(in, line3);
+    REQUIRE(line1 == "% This is a comment");
+    REQUIRE(line2 == "x = 42;");
+    REQUIRE(line3.find("y = 3.14") != std::string::npos);
+  }
+
+  SECTION("Stream insertion with manipulators") {
+    MatlabFile mf("test_stream_manip");
+    mf << "Line 1" << std::endl;
+    mf << "Line 2" << std::endl;
+    mf.close();
+
+    // Read back and verify
+    std::ifstream in("test_stream_manip.m");
+    std::string line1, line2;
+    std::getline(in, line1);
+    std::getline(in, line2);
+    REQUIRE(line1 == "Line 1");
+    REQUIRE(line2 == "Line 2");
+  }
+
+  SECTION("Mixed stream insertion and printMatlabForm") {
+    MatlabFile mf("test_mixed");
+    mf << "% Header comment\n";
+    printMatlabForm(mf, 3.14159, "pi");
+    mf << "% Footer comment\n";
+    printMatlabForm(mf, 2.71828, "e");
+    mf.close();
+
+    // Read back and verify structure
+    std::ifstream in("test_mixed.m");
+    std::string content((std::istreambuf_iterator<char>(in)),
+                        std::istreambuf_iterator<char>());
+    REQUIRE(content.find("% Header comment") != std::string::npos);
+    REQUIRE(content.find("pi = 3.14159") != std::string::npos);
+    REQUIRE(content.find("% Footer comment") != std::string::npos);
+    REQUIRE(content.find("e = 2.71828") != std::string::npos);
+  }
+
+  SECTION("Stream insertion with various types") {
+    MatlabFile mf("test_types");
+    mf << "int_val = " << 42 << ";\n";
+    mf << "double_val = " << 3.14159 << ";\n";
+    mf << "string_val = '" << "hello" << "';\n";
+    mf.close();
+
+    // Read back and verify
+    std::ifstream in("test_types.m");
+    std::string content((std::istreambuf_iterator<char>(in)),
+                        std::istreambuf_iterator<char>());
+    REQUIRE(content.find("int_val = 42") != std::string::npos);
+    REQUIRE(content.find("double_val = 3.14159") != std::string::npos);
+    REQUIRE(content.find("string_val = 'hello'") != std::string::npos);
+  }
+}

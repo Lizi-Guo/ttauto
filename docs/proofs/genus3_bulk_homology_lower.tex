@@ -1,0 +1,222 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,hyperref}
+\newcommand{\pa}{pseudo-Anosov}
+\title{A homological lower bound for twenty-one genus-three strata}
+\author{Computational proof record}
+\date{10 October 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For each of the twenty-one strata listed below, every orientation-preserving
+\pa{} homeomorphism of a closed orientable genus-three surface has dilatation
+at least $c$, the largest real root of
+$C(X)=X^6-X^4-X^3-X^2+1$. The statement includes every connected component and
+every permutation of zeros of the same order. It concerns actual maps, not
+the global minimum of an abstract train-track automaton. It does not identify
+any stratum's exact minimum and does not prove the unrestricted genus-three
+minimum. The topological argument is written here; the attached programs
+check finite exact arithmetic and provenance, not a formalization of topology.
+\end{abstract}
+
+\section{Scope and the necessary homological spectra}
+The Abelian strata are $H(4),H(3,1),H(2,2),H(2,1,1),H(1,1,1,1)$.
+The quadratic strata in this theorem have orders
+\begin{align*}
+ b=0:&\quad (8),(6,2),(4,4),(4,2,2),(2,2,2,2);\\
+ b=2:&\quad (7,1),(6,1,1),(5,3),(5,2,1),(4,3,1),\\
+ &\quad(4,2,1,1),(3,3,2),(3,2,2,1),(2,2,2,1,1);\\
+ b=4\text{, all orders odd}:&\quad(3,3,1,1),(5,1,1,1).
+\end{align*}
+Here $b$ is the number of odd quadratic orders; $Q$ means the foliation is
+nonorientable. A square quadratic differential belongs to the Abelian case.
+No assertion about $Q(4,1,1,1,1)$, $Q(3,2,1,1,1)$, $Q(2,2,1,1,1,1)$,
+$Q(3,1,1,1,1,1)$, $Q(2,1,1,1,1,1,1)$, or $Q(1^8)$ is made here.
+
+For an orientable foliation choose its global orientation. The sign of an
+orientation-preserving map on both foliations is a single
+$\varepsilon\in\{+1,-1\}$. Its genus-three homology action has simple
+strictly dominant eigenvalue $\varepsilon\lambda$ by the orientable-foliation
+homology theorem \cite[Theorem 2.2]{LT}. Multiplying the action by
+$\varepsilon$ gives an integral symplectic matrix and a reciprocal monic
+degree-six characteristic polynomial with constant coefficient one and
+simple strictly dominant eigenvalue $\lambda>1$.
+
+For a nonorientable quadratic foliation, take its connected orientating
+double cover \cite[Construction 2.1]{LT}, with deck involution $\tau$.
+Riemann--Hurwitz gives cover genus $5+b/2$. The invariant homology has rank
+six and carries the base action; the anti-invariant homology has rank $4+b$.
+The kernel of $1+\tau_*$ in integral homology is an invariant lattice with
+nondegenerate symplectic form over $\mathbb Q$. Thus its characteristic
+polynomial is integral, monic and reciprocal, with constant coefficient one.
+Choose the foliation-preserving lift $F$ of the map. The simple strictly
+dominant homological eigenvalue $\lambda$ lies in this anti-invariant space,
+because the oriented foliation changes sign under $\tau$. All base
+eigenvalues have modulus strictly less than $\lambda$.
+
+Set $u=701/500$; exact Sturm isolation gives $c<u$.
+Suppose, for contradiction, $1<\lambda<c$. All the foregoing necessary
+characteristic polynomials then have every root strictly inside $|X|<u$.
+No train-track coverage assumption is used in this argument.
+
+\section{The complete small-house catalogs}
+For rank four write $P(X)=X^2 Q(X+X^{-1})$ with
+$Q(Y)=Y^2+aY+b$. Each root $y$ of $Q$ is $z+z^{-1}$ for a root $z$ of
+$P$. Reciprocity gives $u^{-1}<|z|<u$, whence
+$|y|<T=u+u^{-1}$. Consequently $|a|<2T<5$ and $|b|<T^2<5$.
+The containing box $-4\leq a,b\leq4$ consists of exactly 81 polynomials
+$[1,a,b+2,a,1]$. The full box is tested by three independent exact unit-disk
+criteria after rational scaling: Schur recursion, a Schur--Cohn Toeplitz
+test, and a Cayley transform with a Hurwitz test. Every stable polynomial
+has zero real roots in $(1,u)$ by exact Sturm counts (factors $X-1$ are
+removed before counting). Thus all five unbranched quadratic strata are
+excluded under $\lambda<c$.
+
+For degree six the complete catalog is the previously independently
+reconstructed 75-polynomial small-house packet. It is derived by a
+containing coefficient box for $P(X)=X^3Q(X+X^{-1})$, not a positivity
+restriction on traces. The original cubic reconstruction and the direct
+15,093-element coefficient box are independently compared in job 9407;
+all three disk tests agree. Exactly three catalog polynomials have a real
+root in $(1,u)$:
+\[
+ C(X),\qquad W(X)=X^6-3X^3+1,\qquad
+ A(X)=X^6+X^5-X^4-3X^3-X^2+X+1.
+\]
+$C$ has no real root in $(1,c)$. $W$ is a polynomial in $X^3$ and its
+positive largest root has distinct conjugates of the same modulus, violating
+strict dominance. Hence any putative actual map with $\lambda<c$ in the
+degree-six cases has characteristic polynomial $A$. Its traces begin
+$(-1,3,5,-1,9,3)$; all 32 traces used below are checked by both Newton
+identities and exact companion-matrix powers.
+
+For the two all-odd $b=4$ strata, positivity of regular point counts implies
+$t_-(k)\geq0$. We use the weaker containing bounds
+$-2\leq t_-(k)\leq\lfloor 8u^k\rfloor$ for $1\leq k\leq4$.
+Newton divisibility reconstructs all 8,719 distinct reciprocal polynomials.
+The independent rectangular trace reconstruction agrees with the recursive
+reconstruction; all three disk tests leave exactly 120 stable polynomials,
+25 with a real root in $(1,u)$, and exactly 20 whose largest positive root
+is strictly below $c$. The other five cannot represent $\lambda<c$.
+Each of the 20 is either excluded by the exact strict-dominance factor
+test or subjected to every necessary zero-action and base-homology model
+below. Passing a necessary condition never asserts realizability.
+
+\section{Abelian zero actions, including a reversed foliation}
+An Abelian zero of order $m$ has $p=2m+2$ prongs. Zeros of different orders
+cannot be permuted. For a cycle of $\ell$ zeros of a given order, the total
+return rotation $r\pmod p$ has parity zero when $\varepsilon=+1$, and
+parity $\ell\pmod2$ when $\varepsilon=-1$. This follows because consecutive
+prongs alternate their signed foliation orientation. Every allowed total
+rotation is retained. At iterate $k$ divisible by $\ell$, the cycle's
+singular Lefschetz contribution is
+\[
+ \ell\begin{cases}1-p,&r(k/\ell)=0\pmod p,\\1,&\text{otherwise}.\end{cases}
+\]
+These are the standard local-index formulas \cite[Proposition 2.6 and
+Corollary 2.7]{LT}; nonfixed zeros contribute zero. Let their total be
+$L_{\rm sing}(k)$. A regular fixed point has index $-\varepsilon^k$.
+Since $L(f^k)=2-\varepsilon^k t_A(k)$, its regular fixed-point count is
+\[
+ R(k)=t_A(k)+\varepsilon^k\bigl(L_{\rm sing}(k)-2\bigr).
+\]
+For each of the five Abelian strata, every cycle type and return rotation
+of each sign is enumerated. Independently the program runs every labelled
+zero permutation and every allowed per-vertex rotation, takes literal
+powers on the prongs, and compares the full 32-index vectors with the
+cycle model. The sets agree exactly. Every $A$-model fails either
+$R(k)\geq0$ or the nonnegative integral ordinary orbit condition
+\[
+ O(n)=\frac{R(n)-\sum_{d\mid n,\,d<n}dO(d)}{n}\in\mathbb Z_{\geq0}
+ \quad(1\leq n\leq32).
+\]
+As positive controls, compatible $C$ zero-action models are retained, and
+the two genuine toral automorphisms $\pm\begin{pmatrix}2&1\\1&1\end{pmatrix}$
+give $R(k)=|\det(f_*^k-I)|$ independently. A corrupted period-two count
+is rejected. Compatible singular data alone do not identify an attaining
+map. Thus no Abelian map has dilatation below $c$.
+
+\section{Quadratic zero actions and base coupling}
+A quadratic zero of order $a$ has $p=a+2$ base prongs. We retain all cycles
+of zeros of the same order and all return rotations. At each iterate keep
+the \emph{correlated} vector $(S(k),Z(k),E(k))$: $S$ is the singular
+contribution in $L(F^k)-L(\tau F^k)=-2t_-(k)$, $Z$ the number of fixed
+base zeros, and $E$ the sum of $\pm1$ return sheet signs at fixed even
+zeros. Even a shared $S$-vector is not enough to discard distinct $Z,E$.
+For an odd zero, its branched lift has $2p$ prongs; the positive-foliation
+lift of a base rotation $r$ is rotation $(p+1)r\pmod{2p}$.
+For an even zero use its two lifts and the parity of the rotation.
+Literal powers of these finite prong and sheet actions compute both local
+indices. Their difference gives $S$, while their average gives
+\[
+ \operatorname{Ind}_{\rm base}=Z-S-E.
+\]
+For a branched point, the average identity also follows from the coordinate
+$z=w^2$: $f(w^2)-w^2=(F(w)-w)(F(w)+w)$, so twice the base winding number
+is the sum of the two lift winding numbers. Here $\tau F^k$ is meant;
+it is not generally $(\tau F)^k$.
+
+Regular points with preserved foliation orientation contribute $-1$ on
+the base and two $-1$ indices to $F^k$; those with reversed orientation
+contribute $+1$ and instead lift to $\tau F^k$. Thus
+\[
+ R(k)=t_-(k)-S(k),\qquad
+ R_-(k)=\frac{2-t_+(k)-Z(k)+t_-(k)+E(k)}2.
+\]
+In addition to ordinary nonnegative integral orbit counts, negative-sign
+regular orbits satisfy
+\[
+ O_-(n)=\frac{R_-(n)-
+ \sum_{d\mid n,\,d<n,\,n/d\ {m odd}}dO_-(d)}n
+ \in\mathbb Z,\qquad 0\leq O_-(n)\leq O(n).
+\]
+Only odd returns preserve a negative sign; using every divisor here would
+be incorrect. Genuine torus quotient controls, direct residue-class point
+counts, and a negative-sign two-cycle check in the accepted generic module
+test these identities and distinguish that error.
+
+All cycle/rotation vector sets in this proof are independently compared
+with all labelled permutations and all per-vertex rotations and literal
+prong/sheet powers. Products across distinct zero orders are full products,
+not a minimum-dominance selection. For each of the nine $b=2$ strata,
+every $A$-model already violates the ordinary necessary orbit conditions.
+This excludes $\lambda<c$ for all nine.
+
+For the two all-odd $b=4$ strata the ordinary conditions alone are
+insufficient. Each strict-dominance-admissible polynomial among the 20 is
+therefore coupled to \emph{all} 75 base polynomials. For its isolated
+dominant root $\lambda\in(l,h)$, a base polynomial is retained only if all
+its roots have modulus $<h$; this is a conservative necessary test, not a
+claim that every retained base spectrum has modulus $<\lambda$.
+All three exact disk tests agree. Exact greatest common divisors reject a
+base sharing $\lambda$ or $-\lambda$. Every remaining base polynomial and
+every complete correlated zero-action model is tested through period 32.
+All models fail the ordinary or coupled necessary conditions. This excludes
+both $Q(3,3,1,1)$ and $Q(5,1,1,1)$, including all their components.
+
+\section{Independent arithmetic acceptance and its limits}
+The diagnostic is \texttt{genus3\_bulk\_homology\_lower\_diagnostic\_v2\_20261010.py}.
+Its original version correctly stopped when it incorrectly expected the
+ordinary conditions alone to exclude every all-odd rank-eight model.
+Its original source, partial packets, log and terminal metadata are kept.
+The new version retains the surviving models and adds the full base
+coupling; exact source reversal restores the original. No proof credit is
+taken from the failed version.
+
+The final acceptance program freshly replays the complete degree-six
+independent arithmetic, the rank-eight recursive catalog, the independently
+reconstructed rank-eight catalog, and the complete new diagnostic. Every
+full report equals its original apart from elapsed time, and all detail
+packets agree byte for byte. It freezes the manuscript, primary paper,
+algorithm sources and dependencies, and complete arithmetic packets with
+SHA-256 manifests and read-only snapshots. The acceptance explicitly binds
+the twenty-one universal real-map lower bounds to this written argument.
+It grants no new automaton base coverage, automaton global minimum,
+stratum exact minimum, or unrestricted global genus-three minimum.
+
+\begin{thebibliography}{9}
+\bibitem{LT} E. Lanneau and J.-L. Thiffeault,
+\emph{On the minimum dilatation of pseudo-Anosov homeomorphisms on surfaces
+of small genus}, arXiv:0905.1302, Construction 2.1, Theorem 2.2,
+Proposition 2.6, Corollary 2.7.
+\end{thebibliography}
+\end{document}
