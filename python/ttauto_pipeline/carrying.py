@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-from .combinatorics import require as need
 """Ordered ribbon-band carrying certificates allowing repeated route vertices.
 
 Each target band has ordered parallel lanes. At a target switch, transit
@@ -8,6 +7,7 @@ source switch star in its original cyclic order. This is a finite planar
 disk-embedding certificate, including loops and return-to-source slides.
 """
 from itertools import permutations, product
+from .combinatorics import require as need
 
 def cyclic(w):
     w = tuple(w)
@@ -25,7 +25,7 @@ def check_orders(source, target, arc, orders):
             for edge, j in lanes:
                 word = words[edge - 1]
                 start = word[j] == d
-                need(start or word[j] == -d, 'canonical gate invariant')
+                need(start or word[j] == -d, 'lane does not traverse this band')
                 if start:
                     label = ('H', edge) if j == 0 else ('T', edge, j - 1)
                 else:
@@ -51,18 +51,18 @@ def check_orders(source, target, arc, orders):
     for edge, word in enumerate(words, 1):
         src = next((v for v, s in enumerate(source['cyclic_directions']) if edge in s))
         dst = next((v for v, s in enumerate(source['cyclic_directions']) if -edge in s))
-        need(origins[word[0]] == vertex_map[src] and origins[-word[-1]] == vertex_map[dst], 'canonical gate invariant')
-        need(all((origins[-a] == origins[b] for a, b in zip(word, word[1:]))), 'canonical gate invariant')
+        need(origins[word[0]] == vertex_map[src] and origins[-word[-1]] == vertex_map[dst], 'edge image has the wrong endpoints')
+        need(all((origins[-a] == origins[b] for a, b in zip(word, word[1:]))), 'edge image is not a continuous path')
     return records
 
 def certify(source, target, arc):
     m = source['main_edges']
     words = arc['edge_images']
     e = len(words)
-    need(target['main_edges'] == m, 'canonical gate invariant')
-    need(sorted(arc['vertex_images']) == list(range(len(source['cyclic_directions']))), 'canonical gate invariant')
-    need(all(((abs(word[0]) <= m) == (i < m) and (abs(word[-1]) <= m) == (i < m) for i, word in enumerate(words))), 'canonical gate invariant')
-    need(all(((abs(a) <= m) != (abs(b) <= m) for w in words for a, b in zip(w, w[1:]))), 'canonical gate invariant')
+    need(target['main_edges'] == m, 'source and target have different real dimensions')
+    need(sorted(arc['vertex_images']) == list(range(len(source['cyclic_directions']))), 'vertex images are not a permutation')
+    need(all(((abs(word[0]) <= m) == (i < m) and (abs(word[-1]) <= m) == (i < m) for i, word in enumerate(words))), 'real edges must begin and end on real bands, infinitesimal edges on infinitesimal bands')
+    need(all(((abs(a) <= m) != (abs(b) <= m) for w in words for a, b in zip(w, w[1:]))), 'edge image does not alternate real and infinitesimal bands')
     uses = {d: [] for d in range(1, e + 1)}
     for edge, word in enumerate(words, 1):
         for j, d in enumerate(word):

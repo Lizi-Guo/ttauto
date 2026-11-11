@@ -30,10 +30,10 @@ def audit(graph, words, vertices):
     state = topology(graph)
     orig, faces = (state.origins, state.faces)
     verify_map(state, state, vertices, words)
-    need(len(words) == m + k and len(vertices) == k, 'canonical gate invariant')
-    need(sorted((conjugacy(apply(words, w)) for w in faces)) == sorted((conjugacy(w) for w in faces)), 'canonical gate invariant')
-    need(all((len(w) == 1 and abs(w[0]) > m for w in words[m:])), 'canonical gate invariant')
-    need(sorted((abs(w[0]) for w in words[m:])) == list(range(m + 1, m + k + 1)), 'canonical gate invariant')
+    need(len(words) == m + k and len(vertices) == k, 'map must give one image per edge and per inner-polygon vertex')
+    need(sorted((conjugacy(apply(words, w)) for w in faces)) == sorted((conjugacy(w) for w in faces)), 'map does not permute the complementary faces')
+    need(all((len(w) == 1 and abs(w[0]) > m for w in words[m:])), 'an infinitesimal edge must map to a single infinitesimal edge')
+    need(sorted((abs(w[0]) for w in words[m:])) == list(range(m + 1, m + k + 1)), 'infinitesimal edges are not permuted')
     stars = []
     vertex_of = {}
     old_vertex = {}
@@ -46,9 +46,9 @@ def audit(graph, words, vertices):
         stars.append(star)
         at += p
         for d in star:
-            need(d not in vertex_of, 'canonical gate invariant')
+            need(d not in vertex_of, 'a real dart occurs at two filled-spine vertices')
             vertex_of[d] = v
-    need(Counter(vertex_of.keys()) == Counter({d: 1 for e in range(1, m + 1) for d in (e, -e)}), 'canonical gate invariant')
+    need(Counter(vertex_of.keys()) == Counter({d: 1 for e in range(1, m + 1) for d in (e, -e)}), 'filled-spine stars do not use every real dart exactly once')
     next_dart = {d: star[(i - 1) % len(star)] for star in stars for i, d in enumerate(star)}
     unvisited = set(vertex_of)
     boundaries = []
@@ -60,32 +60,32 @@ def audit(graph, words, vertices):
             unvisited.remove(d)
             w.append(d)
             d = next_dart[-d]
-        need(d == start, 'canonical gate invariant')
+        need(d == start, 'filled-spine boundary walk does not close')
         boundaries.append(w)
-    need(len(stars) - m + len(boundaries) == 2 - 2 * graph['genus'], 'canonical gate invariant')
-    need(sorted((conjugacy([d for d in w if abs(d) <= m]) for w in faces if any((abs(d) <= m for d in w)))) == sorted((conjugacy(w) for w in boundaries)), 'canonical gate invariant')
+    need(len(stars) - m + len(boundaries) == 2 - 2 * graph['genus'], 'filled spine has the wrong Euler characteristic')
+    need(sorted((conjugacy([d for d in w if abs(d) <= m]) for w in faces if any((abs(d) <= m for d in w)))) == sorted((conjugacy(w) for w in boundaries)), 'filled-spine faces differ from the real parts of the ribbon faces')
     collapsed_vm = []
     for v, p in enumerate(inner):
         targets = {old_vertex[vertices[i]] for i in range(sum(inner[:v]), sum(inner[:v]) + p)}
-        need(len(targets) == 1, 'canonical gate invariant')
+        need(len(targets) == 1, 'vertices of one inner polygon map to different polygons')
         collapsed_vm.append(targets.pop())
-    need(sorted(collapsed_vm) == list(range(len(inner))), 'canonical gate invariant')
+    need(sorted(collapsed_vm) == list(range(len(inner))), 'inner polygons are not permuted')
     images = {e: [d for d in words[e - 1] if abs(d) <= m] for e in range(1, m + 1)}
-    need(all(images.values()), 'canonical gate invariant')
+    need(all(images.values()), 'a main edge has no real image')
     for e, w in list(images.items()):
         images[-e] = [-d for d in w[::-1]]
     for d, w in images.items():
-        need(vertex_of[w[0]] == collapsed_vm[vertex_of[d]] and vertex_of[-w[-1]] == collapsed_vm[vertex_of[-d]], 'canonical gate invariant')
-        need(all((vertex_of[-a] == vertex_of[b] for a, b in zip(w, w[1:]))), 'canonical gate invariant')
-        need(all((a != -b for a, b in zip(w, w[1:]))), 'canonical gate invariant')
+        need(vertex_of[w[0]] == collapsed_vm[vertex_of[d]] and vertex_of[-w[-1]] == collapsed_vm[vertex_of[-d]], 'collapsed edge image has the wrong endpoints')
+        need(all((vertex_of[-a] == vertex_of[b] for a, b in zip(w, w[1:]))), 'collapsed edge image is not a continuous path')
+        need(all((a != -b for a, b in zip(w, w[1:]))), 'collapsed edge image backtracks')
     derivative = {d: w[0] for d, w in images.items()}
     turns = {tuple(sorted((-a, b))) for e in range(1, m + 1) for a, b in zip(images[e], images[e][1:])}
     queue = list(turns)
     while queue:
         a, b = queue.pop()
-        need(a != b, 'canonical gate invariant')
+        need(a != b, 'degenerate turn in the taken-turn orbit')
         t = tuple(sorted((derivative[a], derivative[b])))
-        need(t[0] != t[1], 'canonical gate invariant')
+        need(t[0] != t[1], 'a taken turn is illegal: the derivative identifies its two directions')
         if t not in turns:
             turns.add(t)
             queue.append(t)
@@ -103,7 +103,7 @@ def audit(graph, words, vertices):
         while remaining:
             a = min(remaining)
             g = sorted((b for b in remaining if equivalent(a, b)))
-            need(a in g, 'canonical gate invariant')
+            need(a in g, 'gate class does not contain its own representative')
             remaining -= set(g)
             gates.append(g)
         lookup = {d: i for i, g in enumerate(gates) for d in g}
@@ -114,7 +114,7 @@ def audit(graph, words, vertices):
         need(Counter(runs) == Counter(range(len(gates))), 'noncontiguous derivative gate')
         positions = {g: i for i, g in enumerate(runs)}
         edges = {tuple(sorted((lookup[a], lookup[b]))) for a, b in turns if vertex_of[a] == v}
-        need(all((a != b for a, b in edges)), 'canonical gate invariant')
+        need(all((a != b for a, b in edges)), 'a taken turn joins a gate to itself')
         for a, b in edges:
             x, y = sorted((positions[a], positions[b]))
             for c, d in edges:
@@ -122,7 +122,7 @@ def audit(graph, words, vertices):
                     continue
                 need((x < positions[c] < y) == (x < positions[d] < y), 'crossing canonical infinitesimal chords')
         for a, b in ((a, b) for a in star for b in star):
-            need(equivalent(a, b) == equivalent(derivative[a], derivative[b]), 'canonical gate invariant')
+            need(equivalent(a, b) == equivalent(derivative[a], derivative[b]), 'gate classes are not preserved by the derivative')
         local.append(dict(vertex=v, cyclic_directions=star, gates=gates, cyclic_gate_order=runs, canonical_taken_turn_edges=sorted(edges), canonical_gate_components=components(len(gates), edges), contiguous_gate_blocks=True, infinitesimal_chords_noncrossing=True))
     matrix = [[sum((abs(d) == i + 1 for d in images[j + 1])) for j in range(m)] for i in range(m)]
     power = [[int(i == j) for j in range(m)] for i in range(m)]
@@ -132,5 +132,5 @@ def audit(graph, words, vertices):
         if all((x > 0 for row in power for x in row)):
             positive = n
             break
-    need(positive is not None, 'canonical gate invariant')
+    need(positive is not None, 'real transition matrix is not primitive')
     return dict(passed=True, genus=graph['genus'], filled_spine_vertices=len(inner), filled_spine_edges=m, filled_spine_faces=boundaries, main_edge_images={e: images[e] for e in range(1, m + 1)}, turn_orbit=sorted(turns), vertices=local, real_polynomial=list(cp(matrix)), positive_matrix_power=positive, all_edge_iterates_immersed=True, all_canonical_gate_graphs_connected=all((len(v['canonical_gate_components']) == 1 for v in local)), criterion_acceptance_pending=True, actual_stratum_certified=False, minimum_proved=False)
