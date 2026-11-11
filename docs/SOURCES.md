@@ -33,6 +33,12 @@ The matrix compound-addition and subtraction loops also declare mutable and
 const iterators separately, fixing a template compilation error in jlt's tests.
 No automatic update or download is performed.
 
+The bundled CSparse keeps `Source/`, `Include/`, `Demo/`, `Config/`, its build
+files and `Doc/` (the licence texts and change log). Its `MATLAB/` interface,
+`Matrix/` sample inputs and `Tcov/` coverage harness are not included: nothing
+here builds or reads them. CSparse's own `README.txt` still describes the full
+upstream layout; take those three directories from upstream CSparse if needed.
+
 Version 0.1.2 removes Hall Trains, its native adapter, exact-decision process
 client and graph-format exporter. There is no replacement external classifier.
 The built-in certificates have a stated scope; unsupported disc maps remain

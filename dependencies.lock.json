@@ -14,6 +14,14 @@
     "commit": "ea4e9558f46dd12487be7e3e85d6a3a4eaed8895",
     "distribution": "in-tree-source; no submodule",
     "source_path": "extern/jlt",
-    "local_changes": "CSparse index pointers use deduced types on LLP64; C-allocated objects use cs_spfree/cs_dfree. Previously generated compatibility overlay is now applied directly to the vendored header. Matrix compound addition/subtraction use separate mutable and const iterator declarations."
+    "local_changes": "CSparse index pointers use deduced types on LLP64; C-allocated objects use cs_spfree/cs_dfree. Previously generated compatibility overlay is now applied directly to the vendored header. Matrix compound addition/subtraction use separate mutable and const iterator declarations.",
+    "omitted_paths": {
+      "paths": [
+        "extern/CSparse/MATLAB",
+        "extern/CSparse/Matrix",
+        "extern/CSparse/Tcov"
+      ],
+      "reason": "MATLAB interface, sample input matrices and coverage harness of CSparse; not built or read by this project. Source, Include, Demo, Config and Doc (licences) are retained."
+    }
   }
 }
